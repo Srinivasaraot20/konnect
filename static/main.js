@@ -337,7 +337,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-
   // WhatsApp Logic
   window.openWhatsApp = function(title) {
     const propertyMessages = {
@@ -362,17 +361,17 @@ Thank you.`,
       
       'Premium Apartments': `🏢 Hello Konnect Projects,
 
-I'm interested in your Premium Apartments in Hyderabad.
+I'm interested in your Premium Apartments.
 
-Please share:
+Please share the following details:
 
 ✅ Available Apartments
-✅ 2/3/4 BHK Options
+✅ 2 BHK / 3 BHK / 4 BHK Options
 ✅ Floor Plans
-✅ Amenities
+✅ Amenities & Features
 ✅ Project Brochure
-✅ Site Visit
-✅ Loan Assistance
+✅ Site Visit Availability
+✅ Home Loan Assistance
 ✅ Legal Documentation
 
 Thank you.`,
@@ -393,7 +392,7 @@ Please share:
 
 Thank you.`,
       
-      'Open Plots': `🌳 Hello Konnect Projects,
+      'Open Plots': `🌱 Hello Konnect Projects,
 
 I'm interested in purchasing an Open Plot.
 
@@ -410,7 +409,7 @@ Please share:
 
 Thank you.`,
       
-      'Independent Houses': `🏠 Hello Konnect Projects,
+      'Independent Houses': `🏡 Hello Konnect Projects,
 
 I'm interested in your Independent Houses in Hyderabad.
 
@@ -442,7 +441,7 @@ Thank you.`
     let badgeText = title.includes('Villa') || title.includes('House') ? 'RESIDENTIAL' : (title.includes('Commercial') ? 'COMMERCIAL' : 'REAL ESTATE');
     document.getElementById('modalPropertyBadge').innerText = badgeText;
     document.getElementById('modalPropertyTitle').innerText = title;
-    document.getElementById('modalPropertyDesc').innerText = details.desc;
+    document.getElementById('modalPropertyDesc').innerText = details.description;
     
     // Set Main Image (use first gallery image)
     if(details.gallery && details.gallery.length > 0) {
@@ -480,14 +479,7 @@ Thank you.`
     // Setup WhatsApp Button
     const waBtn = document.getElementById('modalBtnWhatsApp');
     waBtn.onclick = function() {
-        const msg = propertyMessages[title] || `🏡 Hello Konnect Projects,
-
-I'm interested in ${title}.
-
-Please share the available options and details.
-
-Thank you.`;
-        window.open(`https://wa.me/919059598777?text=${encodeURIComponent(msg)}`, '_blank');
+        window.openWhatsApp(title);
     };
     
     // Show Modal
