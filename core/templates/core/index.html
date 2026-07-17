@@ -128,8 +128,8 @@
 
   <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobileMenu">
-    <button class="btn position-absolute text-white" style="top: 24px; right: 24px;" id="menuClose">
-      <i class="fas fa-times fa-2x"></i>
+    <button class="btn position-absolute text-white" style="top: 24px; right: 24px;" id="menuClose" aria-label="Close menu">
+      <i class="fas fa-times fa-2x" aria-hidden="true"></i>
     </button>
     <img src="{% static 'image.png' %}" alt="Konnect Projects Mobile Menu Logo" width="175" height="56" class="mb-4" style="height: 56px; width: auto;">
     <a href="#home" class="mobile-nav-link">Home</a>
@@ -146,9 +146,9 @@
       <a href="{% url 'core:login' %}" class="btn-outline-white mt-3 text-decoration-none">Login</a>
     {% endif %}
     <div class="d-flex align-items-center gap-3 mt-4">
-      <a href="https://wa.me/919059598777" target="_blank" class="text-white text-decoration-none"><i class="fab fa-whatsapp fa-lg"></i></a>
-      <a href="https://www.instagram.com/konnectprojects24by7/" target="_blank" class="text-white text-decoration-none"><i class="fab fa-instagram fa-lg"></i></a>
-      <a href="https://www.facebook.com/profile.php?id=61591657181942" target="_blank" class="text-white text-decoration-none"><i class="fab fa-facebook fa-lg"></i></a>
+      <a href="https://wa.me/919059598777" target="_blank" class="text-white text-decoration-none" aria-label="Chat with us on WhatsApp"><i class="fab fa-whatsapp fa-lg" aria-hidden="true"></i></a>
+      <a href="https://www.instagram.com/konnectprojects24by7/" target="_blank" class="text-white text-decoration-none" aria-label="Visit our Instagram page"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>
+      <a href="https://www.facebook.com/profile.php?id=61591657181942" target="_blank" class="text-white text-decoration-none" aria-label="Visit our Facebook page"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a>
     </div>
   </div>
 
@@ -548,7 +548,7 @@
                 </div>
                 <div class="col-sm-6">
                   <label class="form-label fw-bold" style="font-family:'Montserrat'; font-size:0.78rem; color:var(--royal-blue-dark);">Preferred Location</label>
-                  <select id="formLocation" class="form-input form-select custom-select">
+                  <select id="formLocation" class="form-input form-select custom-select" aria-label="Select preferred location">
                     <option value="">Select location</option>
                     <option>Hyderabad (Premium Localities)</option>
                     <option>Telangana (Other Districts)</option>
@@ -569,7 +569,7 @@
 
               <div class="mb-3">
                 <label class="form-label fw-bold" style="font-family:'Montserrat'; font-size:0.78rem; color:var(--royal-blue-dark);">Investment Budget</label>
-                <select id="formBudget" class="form-input form-select custom-select">
+                <select id="formBudget" class="form-input form-select custom-select" aria-label="Select budget range">
                   <option value="">Select budget range</option>
                   <option>Under ₹50 Lakhs</option>
                   <option>₹50 Lakhs - ₹1 Crore</option>
@@ -724,8 +724,8 @@
 
           <div class="fw-bold mb-2" style="font-family: 'Montserrat'; font-size: 0.72rem; color: var(--gold-light); letter-spacing: 0.1em; text-transform: uppercase;">Newsletter</div>
           <form id="newsletterForm" class="d-flex gap-2">
-            <input type="email" required placeholder="Your email" class="form-control bg-transparent text-white border-secondary" style="font-size: 0.85rem;">
-            <button type="submit" class="btn" style="background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--royal-blue-dark);"><i class="fas fa-paper-plane"></i></button>
+            <input type="email" required placeholder="Your email" class="form-control bg-transparent text-white border-secondary" style="font-size: 0.85rem;" aria-label="Your email address">
+            <button type="submit" class="btn" style="background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--royal-blue-dark);" aria-label="Subscribe to newsletter"><i class="fas fa-paper-plane" aria-hidden="true"></i></button>
           </form>
           <div id="newsletterSuccess" class="d-none mt-2 text-success" style="font-size: 0.75rem;">Subscribed! Thank you.</div>
         </div>
