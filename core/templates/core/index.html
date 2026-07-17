@@ -1,0 +1,811 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Best Real Estate Consultant in Hyderabad | Konnect Projects | Luxury Villas, Apartments, Commercial Properties & Open Plots</title>
+  <meta name="title" content="Konnect Projects | Trusted Real Estate Consultant in Telangana & Andhra Pradesh" />
+  <meta name="description" content="Konnect Projects helps you buy, sell, and invest in luxury villas, apartments, commercial properties, open plots, and independent homes across Telangana and Andhra Pradesh with legally verified properties and expert guidance." />
+  <meta name="keywords" content="Best Real Estate Consultant in Hyderabad, Property Consultant Hyderabad, Buy Property in Hyderabad, Luxury Villas Hyderabad, Premium Apartments Hyderabad, Commercial Properties Hyderabad, Open Plots Hyderabad, Independent Houses Hyderabad, Property Investment Hyderabad, Real Estate Services Hyderabad, Verified Properties Hyderabad, HMDA Approved Plots, Property Advisor Hyderabad, Telangana Real Estate Consultant, Andhra Pradesh Real Estate Consultant, Gated Community Villas Hyderabad, Affordable Homes Hyderabad, Property Documentation Services, Property Registration Assistance, End-to-End Property Solutions" />
+  <meta name="author" content="Konnect Projects" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#1a2e6e" />
+
+  <link rel="icon" type="image/png" href="{% static 'image.png' %}" />
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- FontAwesome CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <!-- AOS CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+
+  <!-- Performance Preloads -->
+  <link rel="preload" href="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=700" as="image">
+  
+  <!-- SEO & Social Meta Tags -->
+  <link rel="canonical" href="https://konnectprojects.in/" />
+  <meta property="og:title" content="Best Real Estate Consultant in Hyderabad | Konnect Projects" />
+  <meta property="og:description" content="Konnect Projects helps you buy, sell, and invest in luxury villas, apartments, commercial properties, open plots, and independent homes across Telangana and Andhra Pradesh." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://konnectprojects.in/" />
+  <meta property="og:image" content="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1200" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Best Real Estate Consultant in Hyderabad | Konnect Projects" />
+  <meta name="twitter:description" content="Konnect Projects helps you buy, sell, and invest in luxury villas, apartments, commercial properties, open plots, and independent homes." />
+  
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    "name": "Konnect Projects",
+    "image": "https://konnectprojects.in/static/image.png",
+    "@id": "",
+    "url": "https://konnectprojects.in/",
+    "telephone": "+919059598777",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Flat No. 201, 2nd Floor, Padmaja Enclave, Megha Hills, Madhapur",
+      "addressLocality": "Hyderabad",
+      "addressRegion": "Telangana",
+      "postalCode": "500081",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 17.4474,
+      "longitude": 78.3979
+    },
+    "sameAs": [
+      "https://www.facebook.com/profile.php?id=61591657181942",
+      "https://www.instagram.com/konnectprojects24by7/",
+      "https://www.linkedin.com/in/konnect-projects-7b8478422/"
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Scroll progress -->
+  <div id="scroll-progress"></div>
+
+  <!-- Loading screen -->
+  <div class="loading-screen" id="loadingScreen">
+    <div class="text-center">
+      <!-- Changed image path for relative loading -->
+      <img src="{% static 'image.png' %}" alt="Konnect Projects Logo Loading" width="200" height="64" class="loader-logo mx-auto" style="height: 64px; width: auto;">
+      <div class="loader-bar">
+        <div class="loader-bar-fill"></div>
+      </div>
+      <p style="color: var(--gold-light); font-family: 'Montserrat'; font-size: 0.72rem; letter-spacing: 0.2em; margin-top: 16px; text-transform: uppercase;">
+        Konnect Projects
+      </p>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="navbar fixed-top" id="navbar">
+    <div class="container-fluid max-w-7xl d-flex align-items-center justify-content-between px-3 px-md-4">
+      <!-- Logo -->
+      <div class="d-flex" style="flex: 1;">
+        <a href="#home" class="d-flex flex-shrink-0 text-decoration-none">
+          <img src="{% static 'image.png' %}" alt="Konnect Projects Logo" width="150" height="48" style="height: 48px; width: auto;">
+        </a>
+      </div>
+
+      <!-- Desktop Nav -->
+      <nav class="d-none d-lg-flex align-items-center justify-content-center gap-4" style="flex: 2;">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#properties" class="nav-link">Properties</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Desktop Auth -->
+      <div class="d-none d-lg-flex align-items-center justify-content-end gap-3" style="flex: 1;">
+        {% if user.is_authenticated %}
+          <span class="text-white-50" style="font-size: 0.85rem; font-weight: 500;"><i class="fas fa-user-circle me-1"></i> {{ user.username }}</span>
+          <a href="{% url 'admin:index' %}" class="btn-outline-white text-decoration-none py-2 px-3" style="font-size: 0.8rem; min-height: auto;">Dashboard</a>
+          <a href="{% url 'core:logout' %}" class="btn-gold text-decoration-none text-dark py-2 px-3" style="font-size: 0.8rem; min-height: auto;">Logout</a>
+        {% else %}
+          <a href="{% url 'core:login' %}" class="btn-outline-white text-decoration-none">Login</a>
+        {% endif %}
+      </div>
+
+      <!-- Mobile hamburger -->
+      <div class="d-flex d-lg-none justify-content-end" style="flex: 1;">
+        <button class="btn text-white p-2" id="menuToggle" aria-label="Toggle menu">
+          <i class="fas fa-bars fa-lg"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="btn position-absolute text-white" style="top: 24px; right: 24px;" id="menuClose">
+      <i class="fas fa-times fa-2x"></i>
+    </button>
+    <img src="{% static 'image.png' %}" alt="Konnect Projects Mobile Menu Logo" width="175" height="56" class="mb-4" style="height: 56px; width: auto;">
+    <a href="#home" class="mobile-nav-link">Home</a>
+    <a href="#about" class="mobile-nav-link">About</a>
+    <a href="#properties" class="mobile-nav-link">Properties</a>
+    <a href="#services" class="mobile-nav-link">Services</a>
+    <a href="#contact" class="mobile-nav-link">Contact</a>
+    <a href="#contact" class="btn-gold mt-4 text-decoration-none text-dark" id="mobileConsult">Book Free Consultation</a>
+    {% if user.is_authenticated %}
+      <div class="text-white-50 mt-3" style="font-size: 1rem;"><i class="fas fa-user-circle me-2"></i>{{ user.username }}</div>
+      <a href="{% url 'admin:index' %}" class="btn-outline-white mt-2 text-decoration-none">Dashboard</a>
+      <a href="{% url 'core:logout' %}" class="btn-gold mt-2 text-decoration-none text-dark">Logout</a>
+    {% else %}
+      <a href="{% url 'core:login' %}" class="btn-outline-white mt-3 text-decoration-none">Login</a>
+    {% endif %}
+    <div class="d-flex align-items-center gap-3 mt-4">
+      <a href="https://wa.me/919059598777" target="_blank" class="text-white text-decoration-none"><i class="fab fa-whatsapp fa-lg"></i></a>
+      <a href="https://www.instagram.com/konnectprojects24by7/" target="_blank" class="text-white text-decoration-none"><i class="fab fa-instagram fa-lg"></i></a>
+      <a href="https://www.facebook.com/profile.php?id=61591657181942" target="_blank" class="text-white text-decoration-none"><i class="fab fa-facebook fa-lg"></i></a>
+    </div>
+  </div>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+      <div class="hero-bg"></div>
+      <div class="hero-overlay"></div>
+
+      <!-- Decorative circles -->
+      <div class="position-absolute rounded-circle opacity-10 dec-circle-1"></div>
+      <div class="position-absolute rounded-circle opacity-10 dec-circle-2"></div>
+
+      <div class="container-fluid max-w-7xl position-relative z-10 px-3 px-md-4 pt-5 pb-5 mt-5">
+        <div class="row align-items-center min-vh-80 gap-y-4">
+          <!-- Left -->
+          <div class="col-lg-6" data-aos="fade-right" data-aos-duration="800">
+            <!-- Badge -->
+            <div class="d-inline-flex align-items-center gap-2 px-3 py-2 rounded-pill mb-4"
+              style="background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3);">
+              <i class="fas fa-star" style="color: var(--gold-light); font-size: 12px;"></i>
+              <span style="color: var(--gold-light); font-family: 'Montserrat'; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;">
+                TRUSTED REAL ESTATE CONSULTANTS
+              </span>
+            </div>
+
+            <h1 class="hero-title text-white mb-4">
+              Find the Right Property <br>
+              <span class="gradient-text">with Confidence</span>
+            </h1>
+
+            <p class="hero-subtitle mb-3 text-white-50">
+              <strong style="color: var(--gold-light);">Best Real Estate Consultant in Hyderabad</strong> & Trusted Property Advisor in Telangana & AP
+            </p>
+            <p class="hero-text mb-5 text-white-50" style="max-width: 540px;">
+              As an experienced property investment consultant in Hyderabad with over 15 years of expertise, Mattam Shravan Kumar helps individuals, families, and investors buy property in Hyderabad with confidence. From luxury villas and premium apartments to commercial spaces, open plots, and affordable homes — every property is carefully selected to match your goals.
+            </p>
+
+            <div class="d-flex flex-wrap gap-3 mb-5">
+              <a href="#contact" class="btn-gold text-decoration-none">
+                Book Free Consultation <i class="fas fa-arrow-right ms-2"></i>
+              </a>
+              <a href="#properties" class="btn-outline-white text-decoration-none">
+                Find Your Property
+              </a>
+            </div>
+
+            <!-- Trust badges -->
+            <div class="d-flex flex-wrap gap-3">
+              <div class="trust-badge">
+                <i class="fas fa-shield-alt"></i> <span>Legally Verified</span>
+              </div>
+              <div class="trust-badge">
+                <i class="fas fa-award"></i> <span>15+ Years Experience</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right -->
+          <div class="col-lg-6 d-none d-lg-block" data-aos="fade-left" data-aos-duration="800">
+            <div class="position-relative">
+              <!-- Main image -->
+              <div class="rounded-4 overflow-hidden animate-float" style="box-shadow: 0 30px 80px rgba(0,0,0,0.5);">
+                <img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Hyderabad Luxury Real Estate Villa" width="700" height="380" class="w-100 object-fit-cover" style="height: 380px;">
+                <div class="position-absolute top-0 start-0 w-100 h-100 rounded-4 hero-img-gradient"></div>
+              </div>
+
+              <!-- Floating card 1 -->
+              <div class="position-absolute px-4 py-3 rounded-3 floating-card-1">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="icon-box rounded-3 d-flex align-items-center justify-content-center">
+                    <i class="fas fa-award fa-lg" style="color: var(--gold-light);"></i>
+                  </div>
+                  <div>
+                    <div class="fw-bolder" style="font-family: 'Poppins'; font-size: 1.5rem; color: var(--royal-blue-dark); line-height: 1;">15+</div>
+                    <div style="font-size: 0.75rem; color: var(--gray); margin-top: 2px;">Years of Excellence</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <a href="#about" class="scroll-indicator text-decoration-none animate-float">
+        <span>SCROLL</span>
+        <i class="fas fa-chevron-down fa-lg"></i>
+      </a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5 bg-white">
+      <div class="container-fluid max-w-7xl px-3 px-md-4 py-md-5">
+        <div class="row align-items-center gap-y-5">
+          <!-- Left -->
+          <div class="col-lg-6" data-aos="fade-right">
+            <div class="position-relative rounded-3 overflow-hidden d-flex justify-content-center align-items-end" style="height: 480px; border: 1px solid #f0f0f0; background: #f9fafb;">
+              <img src="https://images.pexels.com/photos/3760067/pexels-photo-3760067.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Real Estate Consultant Mattam Shravan Kumar" width="700" height="480" class="w-100 h-100 object-fit-cover" loading="lazy" decoding="async">
+              <div class="position-absolute w-100 h-100 start-0 top-0 img-overlay-bottom"></div>
+              
+              <div class="position-absolute bottom-0 start-0 p-4 z-2" style="font-family: 'Brush Script MT', cursive; font-size: 1.8rem; color: #fff; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); line-height: 1.1;">
+                Mattam<br><span style="margin-left: 15px;">Shravan Kumar</span>
+              </div>
+            </div>
+
+            <div class="position-absolute top-50 start-0 translate-middle-y px-4 py-4 rounded-3 text-center z-3 exp-badge ms-lg-n4" style="background: var(--royal-blue-dark); box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+              <div class="fw-bolder" style="font-family: 'Poppins'; font-size: 2.2rem; color: var(--gold); line-height: 1;">15+</div>
+              <div class="text-white mt-2 fw-medium" style="font-size: 0.75rem; letter-spacing: 0.5px;">Years of<br>Experience</div>
+            </div>
+          </div>
+
+          <!-- Right -->
+          <div class="col-lg-6 ps-lg-5" data-aos="fade-left">
+            <h2 class="section-title mb-4" style="font-size: clamp(1.8rem, 3vw, 2.4rem);">
+              About <span style="color: var(--gold);">Mattam Shravan Kumar</span><br><span style="font-size: 1.2rem; color: var(--gray);">Experienced Real Estate Consultant in Hyderabad</span>
+            </h2>
+            <p style="color: var(--gray); font-size: 0.95rem; line-height: 1.8; margin-bottom: 16px;">
+              Mattam Shravan Kumar is a highly trusted real estate consultant and property investment expert based in Hyderabad with extensive knowledge of the Telangana and Andhra Pradesh property markets. His approach combines market expertise, transparent guidance, and personalized service to help clients buy, sell, and invest with confidence.
+            </p>
+            <p style="color: var(--gray); font-size: 0.95rem; line-height: 1.8; margin-bottom: 40px;">
+              Every transaction is handled with professionalism, legal clarity, and a commitment to long-term value.
+            </p>
+
+            <div class="row g-4">
+              <div class="col-6 col-sm-3">
+                <div class="feature-icon mb-3" style="color: var(--gold);"><i class="fas fa-chart-line fa-2x"></i></div>
+                <div class="fw-bold mb-1" style="font-family: 'Poppins'; font-size: 0.95rem; color: var(--royal-blue-dark);">Market Expert</div>
+                <div style="font-size: 0.85rem; color: var(--gray); line-height: 1.4;">In-depth market<br>knowledge</div>
+              </div>
+              <div class="col-6 col-sm-3">
+                <div class="feature-icon mb-3" style="color: var(--gold);"><i class="fas fa-check-circle fa-2x"></i></div>
+                <div class="fw-bold mb-1" style="font-family: 'Poppins'; font-size: 0.95rem; color: var(--royal-blue-dark);">Transparent Deals</div>
+                <div style="font-size: 0.85rem; color: var(--gray); line-height: 1.4;">Honest & transparent<br>guidance</div>
+              </div>
+              <div class="col-6 col-sm-3">
+                <div class="feature-icon mb-3" style="color: var(--gold);"><i class="fas fa-users fa-2x"></i></div>
+                <div class="fw-bold mb-1" style="font-family: 'Poppins'; font-size: 0.95rem; color: var(--royal-blue-dark);">Client Focused</div>
+                <div style="font-size: 0.85rem; color: var(--gray); line-height: 1.4;">Your goals,<br>our priority.</div>
+              </div>
+              <div class="col-6 col-sm-3">
+                <div class="feature-icon mb-3" style="color: var(--gold);"><i class="fas fa-shield-check fa-2x"></i></div>
+                <div class="fw-bold mb-1" style="font-family: 'Poppins'; font-size: 0.95rem; color: var(--royal-blue-dark);">End-to-End Support</div>
+                <div style="font-size: 0.85rem; color: var(--gray); line-height: 1.4;">From search to<br>ownership</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Specialisations -->
+    <section id="services" class="py-5" style="background: var(--white);">
+      <div class="container-fluid max-w-7xl px-3 px-md-4 py-md-5">
+        <div class="text-center mx-auto mb-5" style="max-width: 600px;" data-aos="fade-up">
+          <div class="section-label justify-content-center">Our Specialisations</div>
+          <h2 class="section-title mb-3" style="font-size: clamp(1.8rem, 3vw, 2.4rem);">
+            Premium <span class="gradient-text">Real Estate Services in Hyderabad</span>
+          </h2>
+          <p style="color: var(--gray); font-size: 0.95rem; line-height: 1.7;">
+            From luxury estates to strategic investments, we offer specialized expertise across every property segment.
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+            <div class="spec-card h-100">
+              <div class="card-icon"><i class="fas fa-crown fa-lg text-white"></i></div>
+              <h3 class="card-title">Luxury Estates</h3>
+              <p class="card-text">Discover premium villas, luxury apartments, and gated communities in Hyderabad's most sought-after locations.</p>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+            <div class="spec-card h-100">
+              <div class="card-icon"><i class="far fa-building fa-lg text-white"></i></div>
+              <h3 class="card-title">Commercial Properties</h3>
+              <p class="card-text">Find office spaces, retail outlets, and commercial investments designed to deliver strong business growth and long-term returns.</p>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+            <div class="spec-card h-100">
+              <div class="card-icon"><i class="fas fa-map fa-lg text-white"></i></div>
+              <h3 class="card-title">Strategic Open Plots</h3>
+              <p class="card-text">Invest in carefully selected open plots with excellent appreciation potential across Telangana and Andhra Pradesh.</p>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+            <div class="spec-card h-100">
+              <div class="card-icon"><i class="fas fa-home fa-lg text-white"></i></div>
+              <h3 class="card-title">Affordable Housing</h3>
+              <p class="card-text">Explore quality independent homes that offer comfort, value, and affordability for every family.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-5" style="background: var(--light-bg);">
+      <div class="container-fluid max-w-7xl px-3 px-md-4 py-md-5">
+        <div class="text-center mx-auto mb-5" style="max-width: 600px;" data-aos="fade-up">
+          <div class="section-label justify-content-center">Why Choose Us</div>
+          <h2 class="section-title mb-3" style="font-size: clamp(1.8rem, 3vw, 2.4rem);">
+            Why Choose Our <span class="gradient-text">Trusted Property Consultant</span> Services
+          </h2>
+          <p style="color: var(--gray); font-size: 0.95rem; line-height: 1.7;">
+            Eight reasons why clients trust us with their most important property decisions.
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+            <div class="why-card">
+              <div class="why-icon"><i class="fas fa-award"></i></div>
+              <div>
+                <h3 class="why-title">15+ Years of Real Estate Experience</h3>
+                <p class="why-desc">Over a decade and a half of trusted property consultancy.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+            <div class="why-card">
+              <div class="why-icon"><i class="fas fa-shield-alt"></i></div>
+              <div>
+                <h3 class="why-title">Trusted Property Consultant</h3>
+                <p class="why-desc">A name families and investors across Telangana & AP rely on.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+            <div class="why-card">
+              <div class="why-icon"><i class="fas fa-file-signature"></i></div>
+              <div>
+                <h3 class="why-title">Legally Verified Properties</h3>
+                <p class="why-desc">Every listing is legally vetted for clear titles and documentation.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="150">
+            <div class="why-card">
+              <div class="why-icon"><i class="fas fa-eye"></i></div>
+              <div>
+                <h3 class="why-title">Transparent Buying Process</h3>
+                <p class="why-desc">No hidden charges, no surprises — full clarity at every step.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+            <div class="why-card">
+              <div class="why-icon"><i class="fas fa-compass"></i></div>
+              <div>
+                <h3 class="why-title">Personalized Investment Guidance</h3>
+                <p class="why-desc">Tailored advice aligned with your financial goals and risk profile.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="250">
+            <div class="why-card">
+              <div class="why-icon"><i class="fas fa-map-marked-alt"></i></div>
+              <div>
+                <h3 class="why-title">Strong Market Knowledge</h3>
+                <p class="why-desc">Deep insights into Hyderabad, Telangana, and Andhra Pradesh markets.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+            <div class="why-card">
+              <div class="why-icon"><i class="fas fa-file-contract"></i></div>
+              <div>
+                <h3 class="why-title">End-to-End Documentation Support</h3>
+                <p class="why-desc">We handle the paperwork so your transaction is stress-free.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="350">
+            <div class="why-card">
+              <div class="why-icon"><i class="fas fa-handshake"></i></div>
+              <div>
+                <h3 class="why-title">Client-Focused Service</h3>
+                <p class="why-desc">Your satisfaction and long-term value are our top priorities.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Properties -->
+    <section id="properties" class="py-5" style="background: var(--white);">
+      <div class="container-fluid max-w-7xl px-3 px-md-4 py-md-5">
+        <div class="text-center mx-auto mb-5" style="max-width: 600px;" data-aos="fade-up">
+          <div class="section-label justify-content-center">Featured Categories</div>
+          <h2 class="section-title mb-3" style="font-size: clamp(1.8rem, 3vw, 2.4rem);">
+            Verified <span class="gradient-text">Properties for Sale in Hyderabad</span>
+          </h2>
+          <p style="color: var(--gray); font-size: 0.95rem; line-height: 1.7;">
+            Browse our curated selection of premium properties across every category.
+          </p>
+        </div>
+
+        <div class="row g-4" id="propertiesList">
+          <!-- Populated by JS -->
+        </div>
+        
+        <!-- CTA Card appended in JS -->
+      </div>
+        <!-- Expanded Property Container -->
+        
+    </section>
+
+    
+      </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-white">
+      <div class="container-fluid max-w-7xl px-3 px-md-4 py-md-5">
+        <div class="text-center mx-auto mb-5" data-aos="fade-up">
+          <div class="section-label justify-content-center">Contact Us</div>
+          <h2 class="section-title mb-3" style="font-size: clamp(1.8rem, 3vw, 2.4rem);">
+            Contact <span class="gradient-text">Real Estate Consultant in Hyderabad</span>
+          </h2>
+          <p style="color: var(--gray); font-size: 0.95rem; line-height: 1.7;">
+            Book a free consultation or send us a message. We'll get back to you within 24 hours.
+          </p>
+        </div>
+
+        <div class="row g-5">
+          <div class="col-lg-6" data-aos="fade-right">
+            <div class="d-flex flex-column gap-3 mb-4">
+              <div class="contact-info-box">
+                <div class="icon-wrap"><i class="fas fa-map-marker-alt"></i></div>
+                <div>
+                  <div class="info-label">Office Address</div>
+                  <div class="info-text">Flat No. 201, 2nd Floor, Padmaja Enclave, Megha Hills, Madhapur, Hyderabad – 500081</div>
+                </div>
+              </div>
+              <div class="contact-info-box">
+                <div class="icon-wrap"><i class="fas fa-phone"></i></div>
+                <div>
+                  <div class="info-label">Phone</div>
+                  <a href="tel:+919059598777" class="info-link">+91 90595 98777</a>
+                </div>
+              </div>
+              <div class="contact-info-box">
+                <div class="icon-wrap"><i class="fas fa-envelope"></i></div>
+                <div>
+                  <div class="info-label">Email</div>
+                  <a href="mailto:konnectprojects24by7@gmail.com" class="info-link">konnectprojects24by7@gmail.com</a>
+                </div>
+              </div>
+              <div class="contact-info-box">
+                <div class="icon-wrap"><i class="far fa-clock"></i></div>
+                <div>
+                  <div class="info-label">Working Hours</div>
+                  <div class="info-text">Mon – Sat: 9:00 AM – 8:00 PM</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2 mb-4">
+              <a href="tel:+919059598777" class="btn-blue text-decoration-none d-flex align-items-center gap-2">
+                <i class="fas fa-phone fa-sm"></i> Click to Call
+              </a>
+              <a href="#" id="contactWaBtn" target="_blank" class="btn-gold text-white text-decoration-none d-flex align-items-center gap-2" style="background: linear-gradient(135deg, #25D366, #128C7E);">
+                <i class="fab fa-whatsapp"></i> WhatsApp Chat
+              </a>
+            </div>
+
+            <div>
+              <div class="info-label mb-2">Follow Us</div>
+              <div class="d-flex gap-2">
+                <a href="https://www.instagram.com/konnectprojects24by7/" target="_blank" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61591657181942" target="_blank" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.linkedin.com/in/konnect-projects-7b8478422/" target="_blank" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6" data-aos="fade-left">
+            <form id="contactForm" class="p-4 rounded-4" style="background: var(--light-bg); border: 1px solid var(--border);">
+              <div class="row g-3 mb-3">
+                <div class="col-sm-6">
+                  <label class="form-label fw-bold" style="font-family:'Montserrat'; font-size:0.78rem; color:var(--royal-blue-dark);">Full Name *</label>
+                  <input type="text" id="formName" required class="form-input" placeholder="Your full name">
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label fw-bold" style="font-family:'Montserrat'; font-size:0.78rem; color:var(--royal-blue-dark);">Phone Number *</label>
+                  <input type="tel" id="formPhone" required class="form-input" placeholder="+91 98765 43210">
+                </div>
+              </div>
+              
+              <div class="row g-3 mb-3">
+                <div class="col-sm-6">
+                  <label class="form-label fw-bold" style="font-family:'Montserrat'; font-size:0.78rem; color:var(--royal-blue-dark);">Email Address</label>
+                  <input type="email" id="formEmail" class="form-input" placeholder="you@example.com">
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label fw-bold" style="font-family:'Montserrat'; font-size:0.78rem; color:var(--royal-blue-dark);">Preferred Location</label>
+                  <select id="formLocation" class="form-input form-select custom-select">
+                    <option value="">Select location</option>
+                    <option>Hyderabad (Premium Localities)</option>
+                    <option>Telangana (Other Districts)</option>
+                    <option>Andhra Pradesh</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold" style="font-family:'Montserrat'; font-size:0.78rem; color:var(--royal-blue-dark);">Property Type</label>
+                <div class="d-flex flex-column gap-1">
+                  <label class="d-flex align-items-center gap-2" style="font-size:0.85rem;"><input type="radio" name="propType" value="Luxury Villa / Premium Apartment" class="custom-radio"> Luxury Villa / Premium Apartment</label>
+                  <label class="d-flex align-items-center gap-2" style="font-size:0.85rem;"><input type="radio" name="propType" value="Commercial Office / Retail Space" class="custom-radio"> Commercial Office / Retail Space</label>
+                  <label class="d-flex align-items-center gap-2" style="font-size:0.85rem;"><input type="radio" name="propType" value="Strategic Open Plot" class="custom-radio"> Strategic Open Plot</label>
+                  <label class="d-flex align-items-center gap-2" style="font-size:0.85rem;"><input type="radio" name="propType" value="Affordable Independent House" class="custom-radio"> Affordable Independent House</label>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold" style="font-family:'Montserrat'; font-size:0.78rem; color:var(--royal-blue-dark);">Investment Budget</label>
+                <select id="formBudget" class="form-input form-select custom-select">
+                  <option value="">Select budget range</option>
+                  <option>Under ₹50 Lakhs</option>
+                  <option>₹50 Lakhs - ₹1 Crore</option>
+                  <option>₹1 Crore - ₹3 Crores</option>
+                  <option>₹3 Crores - ₹5 Crores</option>
+                  <option>₹5 Crores +</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold" style="font-family:'Montserrat'; font-size:0.78rem; color:var(--royal-blue-dark);">Investment Timeline</label>
+                <div class="d-flex flex-column gap-1">
+                  <label class="d-flex align-items-center gap-2" style="font-size:0.85rem;"><input type="radio" name="timeline" value="Immediate (Within 30 days)" class="custom-radio"> Immediate (Within 30 days)</label>
+                  <label class="d-flex align-items-center gap-2" style="font-size:0.85rem;"><input type="radio" name="timeline" value="Next 3–6 months" class="custom-radio"> Next 3–6 months</label>
+                  <label class="d-flex align-items-center gap-2" style="font-size:0.85rem;"><input type="radio" name="timeline" value="Just researching the market" class="custom-radio"> Just researching the market</label>
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label fw-bold" style="font-family:'Montserrat'; font-size:0.78rem; color:var(--royal-blue-dark);">Additional Notes</label>
+                <textarea id="formMessage" rows="3" class="form-input" placeholder="Tell us about your requirements..."></textarea>
+              </div>
+
+              <div class="d-flex flex-wrap gap-3">
+                <button type="submit" class="btn-gold border-0 text-dark d-flex align-items-center gap-2">
+                  <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+                <a href="#home" class="btn-blue text-decoration-none d-flex align-items-center gap-2">
+                  Book Consultation <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+
+              <div id="formSuccess" class="alert alert-success mt-3 d-none" style="font-size: 0.85rem;">
+                Thank you! Your message has been sent via WhatsApp. We'll get back to you shortly.
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Map -->
+        <div class="mt-5" data-aos="fade-up">
+          <div class="rounded-4 overflow-hidden position-relative" style="box-shadow: 0 10px 40px rgba(26,46,110,0.1);">
+            <iframe title="Konnect Projects Office Location" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.4!2d78.3979!3d17.4474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDI2JzUwLjYiTiA3OcKwMjMnNTIuNCJF!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" width="100%" height="380" style="border:0;" loading="lazy"></iframe>
+            <div class="position-absolute bottom-0 end-0 m-3 z-1">
+              <a href="https://www.google.com/maps/dir/?api=1&destination=Padmaja+Enclave,+Megha+Hills,+Madhapur,+Hyderabad,+Telangana+500081" target="_blank" class="btn-gold text-decoration-none text-dark d-flex align-items-center gap-2 shadow">
+                <i class="fas fa-map-marker-alt"></i> Get Directions
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-5" style="background: var(--light-bg);">
+      <div class="container-fluid max-w-4xl px-3 px-md-4 py-md-5">
+        <div class="text-center mx-auto mb-5" data-aos="fade-up">
+          <div class="section-label justify-content-center">FAQ</div>
+          <h2 class="section-title mb-3" style="font-size: clamp(1.8rem, 3vw, 2.4rem);">
+            Property Buying FAQ & <span class="gradient-text">Real Estate Questions</span>
+          </h2>
+          <p style="color: var(--gray); font-size: 0.95rem; line-height: 1.7;">
+            Everything you need to know about working with Konnect Projects.
+          </p>
+        </div>
+
+        <div class="accordion custom-accordion" id="faqAccordion" data-aos="fade-up" data-aos-delay="100">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="text-center mt-5">
+          <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 16px;">Still have questions? We're here to help.</p>
+          <a href="#contact" class="btn-blue text-decoration-none">Get in Touch</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Property CTA -->
+    <section class="py-5 parallax-section text-center position-relative overflow-hidden" style="background-image: linear-gradient(135deg, rgba(11,18,40,0.9), rgba(26,46,110,0.85)), url('https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=1920'); background-size: cover; background-attachment: fixed;">
+      <div class="container-fluid max-w-4xl px-3 px-md-4 py-md-5 position-relative z-10">
+        <div class="section-label justify-content-center" style="color: var(--gold-light);">Ready to Find Your Dream Property?</div>
+        <h2 class="text-white fw-bolder mb-3" style="font-family:'Poppins'; font-size: clamp(2rem, 4vw, 3rem); line-height:1.2;">
+          Looking for your <span class="gradient-text">perfect property?</span>
+        </h2>
+        <p class="text-white-50 mx-auto mb-4" style="font-size: 1rem; line-height: 1.7; max-width: 600px;">
+          Let our expert consultants guide you to the right investment. With 15+ years of experience and legally verified properties, your dream home is just a consultation away.
+        </p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+          <a href="#properties" class="btn-gold text-decoration-none">Explore Properties <i class="fas fa-arrow-right ms-2"></i></a>
+          <a href="#contact" class="btn-outline-white text-decoration-none"><i class="fas fa-phone me-2"></i> Book Consultation</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer style="background: var(--royal-blue-dark); color: rgba(255,255,255,0.8);">
+    <div class="container-fluid max-w-7xl px-3 px-md-4 py-5">
+      <div class="row g-5">
+        <div class="col-md-6 col-lg-3">
+          <img src="{% static 'image.png' %}" alt="Konnect Projects Mobile Menu Logo" width="175" height="56" class="mb-4" style="height: 56px; width: auto;">
+          <p style="font-size: 0.85rem; line-height: 1.7; margin-bottom: 16px;">
+            Trusted real estate consultants helping you buy, sell, and invest with confidence across Telangana and Andhra Pradesh.
+          </p>
+          <div class="d-flex gap-2">
+            <a href="https://wa.me/919059598777" target="_blank" class="footer-social" style="background: rgba(37,211,102,0.2); color: #25D366;" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/konnectprojects24by7/" target="_blank" class="footer-social" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61591657181942" target="_blank" class="footer-social" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.linkedin.com/in/konnect-projects-7b8478422/" target="_blank" class="footer-social" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-2">
+          <h3 class="fw-bold text-white mb-3" style="font-family: 'Poppins'; font-size: 1rem;">Quick Links</h3>
+          <div class="d-flex flex-column gap-2">
+            <a href="#home" class="footer-link">Home</a>
+            <a href="#about" class="footer-link">About</a>
+            <a href="#properties" class="footer-link">Properties</a>
+            <a href="#services" class="footer-link">Services</a>
+            <a href="#testimonials" class="footer-link">Testimonials</a>
+            <a href="#faq" class="footer-link">FAQ</a>
+            <a href="#contact" class="footer-link">Contact</a>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <h3 class="fw-bold text-white mb-3" style="font-family: 'Poppins'; font-size: 1rem;">Our Services</h3>
+          <div class="d-flex flex-column gap-2">
+            <a href="#properties" class="footer-link">Luxury Villas</a>
+            <a href="#properties" class="footer-link">Premium Apartments</a>
+            <a href="#properties" class="footer-link">Commercial Spaces</a>
+            <a href="#properties" class="footer-link">Open Plots</a>
+            <a href="#properties" class="footer-link">Independent Houses</a>
+            <a href="#properties" class="footer-link">Investment Guidance</a>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <h3 class="fw-bold text-white mb-3" style="font-family: 'Poppins'; font-size: 1rem;">Get in Touch</h3>
+          <div class="d-flex flex-column gap-2 mb-4">
+            <div class="d-flex align-items-start gap-2">
+              <i class="fas fa-map-marker-alt mt-1" style="color: var(--gold-light);"></i>
+              <span style="font-size: 0.82rem; line-height: 1.6;">Flat No. 201, 2nd Floor, Padmaja Enclave, Megha Hills, Madhapur, Hyderabad – 500081</span>
+            </div>
+            <a href="tel:+919059598777" class="text-white-50 text-decoration-none d-flex align-items-center gap-2" style="font-size: 0.82rem;">
+              <i class="fas fa-phone" style="color: var(--gold-light);"></i> +91 90595 98777
+            </a>
+            <a href="mailto:konnectprojects24by7@gmail.com" class="text-white-50 text-decoration-none d-flex align-items-center gap-2" style="font-size: 0.82rem;">
+              <i class="fas fa-envelope" style="color: var(--gold-light);"></i> konnectprojects24by7@gmail.com
+            </a>
+          </div>
+
+          <div class="fw-bold mb-2" style="font-family: 'Montserrat'; font-size: 0.72rem; color: var(--gold-light); letter-spacing: 0.1em; text-transform: uppercase;">Newsletter</div>
+          <form id="newsletterForm" class="d-flex gap-2">
+            <input type="email" required placeholder="Your email" class="form-control bg-transparent text-white border-secondary" style="font-size: 0.85rem;">
+            <button type="submit" class="btn" style="background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--royal-blue-dark);"><i class="fas fa-paper-plane"></i></button>
+          </form>
+          <div id="newsletterSuccess" class="d-none mt-2 text-success" style="font-size: 0.75rem;">Subscribed! Thank you.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div style="border-top: 1px solid rgba(255,255,255,0.1);">
+      <div class="container-fluid max-w-7xl px-3 px-md-4 py-3 d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
+        <p class="mb-0" style="font-size: 0.82rem;">&copy; <span id="year"></span> Konnect Projects. All rights reserved. | Real Estate Consultants</p>
+        <p class="mb-0 text-white-50" style="font-size: 0.78rem;">Designed with excellence for premium real estate consulting.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Buttons -->
+  <button id="backToTop" class="float-btn d-none" aria-label="Back to Top" style="background: var(--royal-blue); color: #fff; bottom: 210px; right: 24px; z-index: 999; border: none;">
+    <i class="fas fa-arrow-up fa-lg"></i>
+  </button>
+  <a href="https://wa.me/919059598777" id="floatWaBtn" target="_blank" class="float-btn float-btn-wa text-decoration-none" aria-label="Chat with Konnect Projects on WhatsApp">
+    <i class="fab fa-whatsapp fa-xl"></i>
+  </a>
+  <a href="tel:+919059598777" class="float-btn float-btn-call text-decoration-none" aria-label="Call Us">
+    <i class="fas fa-phone fa-lg"></i>
+  </a>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="{% static 'main.js' %}" defer></script>
+
+    <!-- Custom Property Modal -->
+    <div class="modal fade" id="propertyPopupModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-xl" style="max-width: 1000px;">
+        <div class="modal-content border-0 rounded-4 shadow-lg overflow-hidden">
+          <button type="button" class="btn-close position-absolute top-0 end-0 m-3 z-3 bg-light rounded-circle p-2 shadow-sm" data-bs-dismiss="modal" aria-label="Close" style="opacity: 0.8;"></button>
+          
+          <div class="row g-0">
+            <!-- Left Side: Image -->
+            <div class="col-md-5 d-flex align-items-center justify-content-center p-4" style="background-color: #f6faeb; min-height: 400px;">
+              <img id="modalPropertyImg" src="" alt="Property" class="img-fluid rounded shadow-sm" style="max-height: 350px; object-fit: contain;">
+            </div>
+            
+            <!-- Right Side: Content -->
+            <div class="col-md-7 p-4 p-md-5 bg-white">
+              <div class="d-inline-block px-2 py-1 rounded mb-3" style="background-color: #e6f0fa; color: #0d6efd; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.5px;" id="modalPropertyBadge">PROPERTY</div>
+              
+              <h2 class="fw-bold mb-2 text-dark" style="font-family: 'Poppins', sans-serif;" id="modalPropertyTitle">Title</h2>
+              <p class="text-muted mb-4 pb-3 border-bottom" style="font-size: 0.95rem;" id="modalPropertyDesc">Subtitle</p>
+              
+              <div id="modalPropertyFeatures" class="mb-4">
+                <!-- Features injected here -->
+              </div>
+              
+              <div class="d-flex flex-wrap gap-3 mt-4 pt-2">
+                <button id="modalBtnWhatsApp" class="btn text-white rounded-pill px-4 py-2 d-flex align-items-center gap-2 fw-semibold" style="background-color: #128C7E; border: none; font-size: 0.95rem;">
+                  <i class="fab fa-whatsapp fa-lg"></i> WhatsApp Chat
+                </button>
+                <button id="modalBtnEnquiry" class="btn rounded-pill px-4 py-2 d-flex align-items-center gap-2 fw-semibold bg-white" style="border: 1px solid #128C7E; color: #128C7E; font-size: 0.95rem;" onclick="document.getElementById('propertyPopupModal').querySelector('.btn-close').click(); document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">
+                  <i class="fas fa-edit"></i> Fill Enquiry
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</body>
+</html>
