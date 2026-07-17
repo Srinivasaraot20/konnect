@@ -118,31 +118,31 @@ document.addEventListener('DOMContentLoaded', () => {
       title: 'Luxury Villas',
       alt: 'Luxury Villa in Hyderabad',
       desc: 'Premium gated-community villas with world-class amenities in Hyderabad\'s finest neighborhoods.',
-      img: 'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=600',
+      img: 'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=300',
     },
     {
       title: 'Premium Apartments',
       alt: 'Premium Apartment in Hyderabad',
       desc: 'Spacious, modern apartments in prime locations with excellent connectivity and lifestyle features.',
-      img: 'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=600',
+      img: 'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=300',
     },
     {
       title: 'Commercial Spaces',
       alt: 'Commercial Office Space in Hyderabad',
       desc: 'High-return office spaces and retail outlets in Hyderabad\'s booming business districts.',
-      img: 'https://images.pexels.com/photos/302769/pexels-photo-302769.jpeg?auto=compress&cs=tinysrgb&w=600',
+      img: 'https://images.pexels.com/photos/302769/pexels-photo-302769.jpeg?auto=compress&cs=tinysrgb&w=300',
     },
     {
       title: 'Open Plots',
       alt: 'HMDA Approved Open Plot',
       desc: 'Strategically selected plots with strong appreciation potential across Telangana and Andhra Pradesh.',
-      img: 'https://images.pexels.com/photos/210487/pexels-photo-210487.jpeg?auto=compress&cs=tinysrgb&w=600',
+      img: 'https://images.pexels.com/photos/210487/pexels-photo-210487.jpeg?auto=compress&cs=tinysrgb&w=300',
     },
     {
       title: 'Independent Houses',
       alt: 'Independent House in Hyderabad',
       desc: 'Quality independent homes offering comfort, privacy, and long-term value for families.',
-      img: 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=600',
+      img: 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=300',
     },
   ];
 
@@ -150,10 +150,10 @@ document.addEventListener('DOMContentLoaded', () => {
     'Luxury Villas': {
       description: "Discover premium gated-community villas located in Hyderabad's most prestigious neighborhoods.",
       gallery: [
-        'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=400',
-        'https://images.pexels.com/photos/208736/pexels-photo-208736.jpeg?auto=compress&cs=tinysrgb&w=400',
-        'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=400',
-        'https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=400'
+        'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=300',
+        'https://images.pexels.com/photos/208736/pexels-photo-208736.jpeg?auto=compress&cs=tinysrgb&w=300',
+        'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=300',
+        'https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=300'
       ],
       sections: [
         { title: 'Features', icon: '<i class="fas fa-star"></i>', items: ['3 BHK, 4 BHK & 5 BHK Villas', 'Gated Communities', 'Clubhouse & Swimming Pool', 'Landscaped Gardens', 'Bank Loan Assistance'] },
@@ -164,10 +164,10 @@ document.addEventListener('DOMContentLoaded', () => {
     'Premium Apartments': {
       description: "Modern apartments designed for luxury living with excellent connectivity.",
       gallery: [
-        'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=400',
-        'https://images.pexels.com/photos/439391/pexels-photo-439391.jpeg?auto=compress&cs=tinysrgb&w=400',
-        'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=400',
-        'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=400'
+        'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=300',
+        'https://images.pexels.com/photos/439391/pexels-photo-439391.jpeg?auto=compress&cs=tinysrgb&w=300',
+        'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=300',
+        'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=300'
       ],
       sections: [
         { title: 'Features', icon: '<i class="far fa-building"></i>', items: ['2 BHK, 3 BHK, 4 BHK', 'High-rise Towers', 'Clubhouse', 'Swimming Pool'] },
@@ -178,9 +178,9 @@ document.addEventListener('DOMContentLoaded', () => {
     'Commercial Spaces': {
       description: "High-return commercial investment opportunities.",
       gallery: [
-        'https://images.pexels.com/photos/302769/pexels-photo-302769.jpeg?auto=compress&cs=tinysrgb&w=400',
-        'https://images.pexels.com/photos/380768/pexels-photo-380768.jpeg?auto=compress&cs=tinysrgb&w=400',
-        'https://images.pexels.com/photos/267507/pexels-photo-267507.jpeg?auto=compress&cs=tinysrgb&w=400'
+        'https://images.pexels.com/photos/302769/pexels-photo-302769.jpeg?auto=compress&cs=tinysrgb&w=300',
+        'https://images.pexels.com/photos/380768/pexels-photo-380768.jpeg?auto=compress&cs=tinysrgb&w=300',
+        'https://images.pexels.com/photos/267507/pexels-photo-267507.jpeg?auto=compress&cs=tinysrgb&w=300'
       ],
       sections: [
         { title: 'Available Properties', icon: '<i class="fas fa-briefcase"></i>', items: ['Office Spaces', 'Retail Shops', 'IT Office Floors', 'Commercial Buildings', 'Showrooms', 'Food Court Spaces'] }
@@ -190,9 +190,9 @@ document.addEventListener('DOMContentLoaded', () => {
     'Open Plots': {
       description: "Verified investment plots with excellent appreciation potential.",
       gallery: [
-        'https://images.pexels.com/photos/210487/pexels-photo-210487.jpeg?auto=compress&cs=tinysrgb&w=400',
-        'https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&w=400',
-        'https://images.pexels.com/photos/1105754/pexels-photo-1105754.jpeg?auto=compress&cs=tinysrgb&w=400'
+        'https://images.pexels.com/photos/210487/pexels-photo-210487.jpeg?auto=compress&cs=tinysrgb&w=300',
+        'https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&w=300',
+        'https://images.pexels.com/photos/1105754/pexels-photo-1105754.jpeg?auto=compress&cs=tinysrgb&w=300'
       ],
       sections: [
         { title: 'Plot Sizes', icon: '<i class="fas fa-expand"></i>', items: ['150 Sq. Yards', '200 Sq. Yards', '300 Sq. Yards', '400+ Sq. Yards'] },
@@ -203,9 +203,9 @@ document.addEventListener('DOMContentLoaded', () => {
     'Independent Houses': {
       description: "Beautiful independent homes offering privacy, comfort, and long-term value.",
       gallery: [
-        'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=400',
-        'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=400',
-        'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=400'
+        'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=300',
+        'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=300',
+        'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=300'
       ],
       sections: [
         { title: 'Features', icon: '<i class="fas fa-home"></i>', items: ['2 BHK & 3 BHK', 'Duplex Houses', 'Triplex Houses', 'Parking', 'Loan Assistance'] },
