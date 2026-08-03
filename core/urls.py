@@ -1,4 +1,5 @@
 from django.urls import path
+from django.views.generic import TemplateView
 from .views import dashboard_users, user_add, user_edit, user_delete, user_toggle_status, user_reset_password, HomeView, submit_enquiry, CustomLoginView, custom_logout, dashboard_home, dashboard_enquiries, dashboard_profile, dashboard_settings, update_enquiry_status
 
 
@@ -21,6 +22,8 @@ urlpatterns = [
     path('api/update-enquiry/<int:id>/', update_enquiry_status, name='update_enquiry_status'),
 
     path('', HomeView.as_view(), name='home'),
+    path('privacy-policy/', TemplateView.as_view(template_name='core/privacy.html'), name='privacy'),
+    path('terms-of-service/', TemplateView.as_view(template_name='core/terms.html'), name='terms'),
     path('api/submit-enquiry/', submit_enquiry, name='submit_enquiry'),
     path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', custom_logout, name='logout'),
