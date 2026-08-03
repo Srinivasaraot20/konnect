@@ -1,0 +1,182 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+    .summary-card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 24px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        border-left: 5px solid var(--royal-blue);
+        transition: transform 0.3s;
+    }
+    .summary-card:hover {
+        transform: translateY(-5px);
+    }
+    .summary-card.new { border-left-color: #28a745; }
+    .summary-card.read { border-left-color: #17a2b8; }
+    .summary-card.closed { border-left-color: #6c757d; }
+    
+    .summary-icon {
+        font-size: 36px;
+        color: var(--royal-blue);
+    }
+    .summary-card.new .summary-icon { color: #28a745; }
+    .summary-card.read .summary-icon { color: #17a2b8; }
+    .summary-card.closed .summary-icon { color: #6c757d; }
+    
+    .summary-content h3 {
+        margin: 0;
+        font-size: 14px;
+        color: #6c757d;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .summary-content h2 {
+        margin: 5px 0 0 0;
+        font-size: 32px;
+        color: #333;
+        font-weight: bold;
+    }
+    
+    /* Hide the default app list if desired, but we keep the sidebar functionality of Django Admin */
+    #content-main {
+        width: 100%;
+        float: none;
+    }
+    #content-related {
+        display: none;
+    }
+</style>
+{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+    <h1 class="mb-4 text-dark fw-bold"><i class="fas fa-chart-pie" style="color: var(--royal-blue);"></i> Dashboard Overview</h1>
+    
+    <!-- Summary Cards -->
+    <div class="row g-4 mb-5">
+        <div class="col-sm-6 col-lg-3">
+            <div class="summary-card">
+                <div class="summary-icon"><i class="fas fa-inbox"></i></div>
+                <div class="summary-content">
+                    <h3>Total Enquiries</h3>
+                    <h2>{{ total_enquiries|default:"0" }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="summary-card new">
+                <div class="summary-icon"><i class="fas fa-envelope"></i></div>
+                <div class="summary-content">
+                    <h3>New Enquiries</h3>
+                    <h2>{{ new_enquiries|default:"0" }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="summary-card read">
+                <div class="summary-icon"><i class="fas fa-envelope-open-text"></i></div>
+                <div class="summary-content">
+                    <h3>Read Enquiries</h3>
+                    <h2>{{ read_enquiries|default:"0" }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="summary-card closed">
+                <div class="summary-content">
+                    <h3>Closed Enquiries</h3>
+                    <h2>{{ closed_enquiries|default:"0" }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row g-4">
+        <!-- Apps List (Sidebar Equivalent in main content) -->
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-header bg-white border-0 pt-4 pb-0">
+                    <h3 class="fw-bold"><i class="fas fa-cogs" style="color: var(--royal-blue);"></i> Manage Modules</h3>
+                </div>
+                <div class="card-body">
+                    <div class="list-group list-group-flush">
+                        {% for app in app_list %}
+                            {% for model in app.models %}
+                                <a href="{{ model.admin_url }}" class="list-group-item list-group-item-action d-flex align-items-center gap-3 py-3 border-bottom">
+                                    {% if 'Enquiry' in model.name %}
+                                        <i class="fas fa-envelope-open fa-lg text-primary"></i>
+                                    {% elif 'Profile' in model.name %}
+                                        <i class="fas fa-user-cog fa-lg text-warning"></i>
+                                    {% else %}
+                                        <i class="fas fa-folder fa-lg text-secondary"></i>
+                                    {% endif %}
+                                    <div class="d-flex flex-column">
+                                        <span class="fw-bold text-dark">{{ model.name }}</span>
+                                        <span class="text-muted small">Manage {{ model.name|lower }}</span>
+                                    </div>
+                                    <i class="fas fa-chevron-right ms-auto text-muted small"></i>
+                                </a>
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Latest Enquiries Table -->
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
+                    <h3 class="fw-bold"><i class="fas fa-clock" style="color: var(--royal-blue);"></i> Latest Contact Enquiries</h3>
+                    <a href="{% url 'admin:core_contactenquiry_changelist' %}" class="btn btn-sm btn-outline-primary rounded-pill px-3">View All</a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for enquiry in latest_enquiries %}
+                                <tr>
+                                    <td><strong>{{ enquiry.full_name }}</strong></td>
+                                    <td><a href="mailto:{{ enquiry.email_address }}" class="text-decoration-none">{{ enquiry.email_address }}</a></td>
+                                    <td>{{ enquiry.enquiry_date|date:"d M Y, H:i" }}</td>
+                                    <td>
+                                        {% if enquiry.status == 'New' %}
+                                            <span class="badge bg-success rounded-pill px-3 py-2">New</span>
+                                        {% elif enquiry.status == 'Contacted' %}
+                                            <span class="badge bg-info rounded-pill px-3 py-2 text-dark">Read</span>
+                                        {% else %}
+                                            <span class="badge bg-secondary rounded-pill px-3 py-2">Closed</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="4" class="text-center text-muted py-4">No recent enquiries found.</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

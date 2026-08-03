@@ -1,0 +1,342 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Contact Enquiries{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold m-0">Contact Enquiries</h2>
+</div>
+
+<div class="glass-card mb-4">
+    <form method="GET" class="row g-3">
+        <div class="col-md-5">
+            <input type="text" name="search" class="form-control" placeholder="Search by name, email, or phone..." value="{{ search_q }}">
+        </div>
+        <div class="col-md-3">
+            <select name="status" class="form-select">
+                <option value="">All Statuses</option>
+                <option value="New" {% if status_filter == 'New' %}selected{% endif %}>New</option>
+                <option value="Contacted" {% if status_filter == 'Contacted' %}selected{% endif %}>Read</option>
+                <option value="Closed" {% if status_filter == 'Closed' %}selected{% endif %}>Closed</option>
+            </select>
+        </div>
+        <div class="col-md-4 d-flex gap-2">
+            <button type="submit" class="btn btn-primary-custom flex-fill">Filter</button>
+            <a href="{% url 'core:dashboard_enquiries' %}" class="btn btn-light border flex-fill">Clear</a>
+        </div>
+    </form>
+</div>
+
+<div class="glass-card">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>Property</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for eq in page_obj %}
+                <tr id="row-{{ eq.id }}">
+                    <td class="fw-semibold">{{ eq.full_name }}</td>
+                    <td>
+                        <div class="small">{{ eq.email_address }}</div>
+                        <div class="small text-muted">{{ eq.mobile_number }}</div>
+                    </td>
+                    <td>{{ eq.preferred_property_type|default:"-" }}</td>
+                    <td class="small">{{ eq.enquiry_date|date:"d M Y" }}</td>
+                    <td>
+                        <span id="status-{{ eq.id }}" class="badge rounded-pill px-2 py-1 
+                            {% if eq.status == 'New' %}bg-success bg-opacity-10 text-success
+                            {% elif eq.status == 'Contacted' %}bg-info bg-opacity-10 text-info
+                            {% else %}bg-secondary bg-opacity-10 text-secondary{% endif %}">
+                            {{ eq.status }}
+                        </span>
+                    </td>
+                    <td>
+                        <button class="btn btn-sm btn-light border text-primary me-1" onclick="viewDetails(this)"
+                            data-id="{{ eq.id }}"
+                            data-name="{{ eq.full_name|escapejs }}"
+                            data-email="{{ eq.email_address|escapejs }}"
+                            data-phone="{{ eq.mobile_number|escapejs }}"
+                            data-company="{{ eq.company_name|escapejs|default:'' }}"
+                            data-contact-pref="{{ eq.preferred_contact_method|escapejs|default:'' }}"
+                            data-date="{{ eq.enquiry_date|date:'d M Y, H:i A' }}"
+                            data-status="{{ eq.status|escapejs }}"
+                            data-updated="{{ eq.last_updated|date:'d M Y, H:i A' }}"
+                            data-service="{{ eq.service_interested_in|escapejs|default:'' }}"
+                            data-category="{{ eq.property_category|escapejs|default:'' }}"
+                            data-type="{{ eq.preferred_property_type|escapejs|default:'' }}"
+                            data-budget="{{ eq.budget|escapejs|default:'' }}"
+                            data-reqs="{{ eq.requirements|escapejs|default:'' }}"
+                            data-location="{{ eq.preferred_location|escapejs|default:'' }}"
+                            data-timeline="{{ eq.timeline|escapejs|default:'' }}"
+                            data-msg="{{ eq.message|escapejs|default:'' }}"
+                            "><i class="fas fa-eye"></i></button>
+                        {% if eq.status == 'New' %}
+                        <button class="btn btn-sm btn-light border text-success me-1" onclick="updateStatus({{ eq.id }}, 'mark_read')" title="Mark Read"><i class="fas fa-check"></i></button>
+                        {% endif %}
+                        <button class="btn btn-sm btn-light border text-danger" onclick="updateStatus({{ eq.id }}, 'delete')" title="Delete"><i class="fas fa-trash"></i></button>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="6" class="text-center py-4">No enquiries found.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <!-- Pagination -->
+    {% if page_obj.has_other_pages %}
+    <nav class="mt-4">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}&search={{ search_q }}&status={{ status_filter }}">Previous</a></li>
+            {% endif %}
+            
+            {% for num in page_obj.paginator.page_range %}
+                <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                    <a class="page-link" href="?page={{ num }}&search={{ search_q }}&status={{ status_filter }}">{{ num }}</a>
+                </li>
+            {% endfor %}
+            
+            {% if page_obj.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}&search={{ search_q }}&status={{ status_filter }}">Next</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+
+
+<!-- Redesigned Modal -->
+<div class="modal fade" id="viewModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content border-0 rounded-4 shadow-lg">
+      <div class="modal-header border-bottom bg-light rounded-top-4 p-4">
+        <h4 class="modal-title fw-bold m-0" style="color: var(--sidebar-bg);">Contact Enquiry Details</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      
+      <div class="modal-body p-0">
+        <div class="row g-0">
+            
+            <!-- Column 1: Customer & System Info -->
+            <div class="col-md-5 bg-light p-4 border-end">
+                <h6 class="fw-bold text-uppercase mb-3" style="color: var(--primary); font-size: 0.8rem; letter-spacing: 1px;">Customer Information</h6>
+                
+                <div class="mb-3">
+                    <div class="small text-muted mb-1">Full Name</div>
+                    <div class="fw-semibold" id="modalName"></div>
+                </div>
+                
+                <div class="mb-3">
+                    <div class="small text-muted mb-1">Email Address</div>
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="fw-semibold text-break" id="modalEmail"></div>
+                        <button class="btn btn-sm btn-light border p-1 py-0" onclick="navigator.clipboard.writeText(document.getElementById('modalEmail').innerText);"><i class="fas fa-copy text-muted" style="font-size: 0.7rem;"></i></button>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <div class="small text-muted mb-1">Phone Number</div>
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="fw-semibold" id="modalPhone"></div>
+                        <button class="btn btn-sm btn-light border p-1 py-0" onclick="navigator.clipboard.writeText(document.getElementById('modalPhone').innerText);"><i class="fas fa-copy text-muted" style="font-size: 0.7rem;"></i></button>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <div class="small text-muted mb-1">Company</div>
+                    <div class="fw-semibold" id="modalCompany"></div>
+                </div>
+                
+                <div class="mb-4">
+                    <div class="small text-muted mb-1">Preferred Contact</div>
+                    <div class="fw-semibold" id="modalContactPref"></div>
+                </div>
+                
+                <hr class="text-muted">
+                
+                <h6 class="fw-bold text-uppercase mb-3 mt-4" style="color: var(--primary); font-size: 0.8rem; letter-spacing: 1px;">System Information</h6>
+                
+                <div class="mb-3">
+                    <div class="small text-muted mb-1">Enquiry ID</div>
+                    <div class="fw-semibold" id="modalId"></div>
+                </div>
+                
+                <div class="mb-3">
+                    <div class="small text-muted mb-1">Submitted On</div>
+                    <div class="fw-semibold" id="modalDate"></div>
+                </div>
+                
+                <div class="mb-3">
+                    <div class="small text-muted mb-1">Status</div>
+                    <div id="modalStatusBadge"></div>
+                </div>
+                
+                <div class="mb-3">
+                    <div class="small text-muted mb-1">Last Updated</div>
+                    <div class="fw-semibold" id="modalUpdated"></div>
+                </div>
+            </div>
+            
+            <!-- Column 2: Enquiry Details -->
+            <div class="col-md-7 p-4">
+                <h6 class="fw-bold text-uppercase mb-3" style="color: var(--primary); font-size: 0.8rem; letter-spacing: 1px;">Enquiry Information</h6>
+                
+                <div class="row g-3 mb-4">
+                    <div class="col-sm-6">
+                        <div class="small text-muted mb-1">Service</div>
+                        <div class="fw-semibold" id="modalService"></div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="small text-muted mb-1">Property Category</div>
+                        <div class="fw-semibold" id="modalCategory"></div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="small text-muted mb-1">Property Type</div>
+                        <div class="fw-semibold" id="modalType"></div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="small text-muted mb-1">Budget</div>
+                        <div class="fw-semibold text-success" id="modalBudget"></div>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <h6 class="fw-bold text-dark border-bottom pb-2" style="font-size: 0.9rem;">Requirements & Timeline</h6>
+                    <p class="m-0 text-muted" style="font-size: 0.95rem;" id="modalRequirements"></p>
+                    <p class="m-0 text-muted mt-2" style="font-size: 0.95rem;"><strong>Location:</strong> <span id="modalLocation"></span></p>
+                    <p class="m-0 text-muted mt-1" style="font-size: 0.95rem;"><strong>Timeline:</strong> <span id="modalTimeline"></span></p>
+                </div>
+                
+                <div class="mb-4">
+                    <h6 class="fw-bold text-dark border-bottom pb-2" style="font-size: 0.9rem;">Message</h6>
+                    <div class="bg-light p-3 rounded-3" style="border: 1px dashed #ccc;">
+                        <p id="modalMessage" class="m-0 text-dark" style="font-size: 0.95rem; white-space: pre-wrap;"></p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+      </div>
+      
+      <!-- Action Toolbar -->
+      <div class="modal-footer border-top p-3 bg-light d-flex flex-wrap justify-content-between gap-2">
+        <div class="d-flex gap-2">
+            <a href="#" id="btnCall" class="btn btn-sm btn-primary" style="background-color: #007bff; border: none;"><i class="fas fa-phone-alt me-1"></i> Call</a>
+            <a href="#" id="btnEmail" class="btn btn-sm btn-secondary" style="background-color: #6c757d; border: none;"><i class="fas fa-envelope me-1"></i> Email</a>
+            <a href="#" id="btnWhatsApp" target="_blank" class="btn btn-sm text-white" style="background-color: #25D366; border: none;"><i class="fab fa-whatsapp me-1"></i> WhatsApp</a>
+        </div>
+        
+        <div class="d-flex gap-2">
+            <button id="btnMarkRead" class="btn btn-sm btn-outline-info"><i class="fas fa-check me-1"></i> Mark Read</button>
+            <button id="btnMarkReplied" class="btn btn-sm btn-outline-success"><i class="fas fa-check-double me-1"></i> Mark Replied</button>
+            <button id="btnDelete" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash me-1"></i> Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+{% endblock %}
+
+{% block extrascript %}
+
+<script>
+    const modal = new bootstrap.Modal(document.getElementById('viewModal'));
+    
+    function viewDetails(btnElement) {
+        // Read data attributes
+        const id = btnElement.getAttribute('data-id');
+        const name = btnElement.getAttribute('data-name');
+        const email = btnElement.getAttribute('data-email');
+        const phone = btnElement.getAttribute('data-phone');
+        const company = btnElement.getAttribute('data-company') || 'N/A';
+        const contactPref = btnElement.getAttribute('data-contact-pref') || 'N/A';
+        const date = btnElement.getAttribute('data-date');
+        const status = btnElement.getAttribute('data-status');
+        const updated = btnElement.getAttribute('data-updated');
+        
+        const service = btnElement.getAttribute('data-service') || 'Real Estate';
+        const category = btnElement.getAttribute('data-category') || 'N/A';
+        const pType = btnElement.getAttribute('data-type') || 'N/A';
+        const budget = btnElement.getAttribute('data-budget') || 'N/A';
+        const reqs = btnElement.getAttribute('data-reqs') || 'No specific requirements stated.';
+        const location = btnElement.getAttribute('data-location') || 'N/A';
+        const timeline = btnElement.getAttribute('data-timeline') || 'N/A';
+        const msg = btnElement.getAttribute('data-msg') || 'No message provided.';
+        
+        // Populate Customer
+        document.getElementById('modalName').textContent = name;
+        document.getElementById('modalEmail').textContent = email;
+        document.getElementById('modalPhone').textContent = phone;
+        document.getElementById('modalCompany').textContent = company;
+        document.getElementById('modalContactPref').textContent = contactPref;
+        
+        // Populate System
+        document.getElementById('modalId').textContent = 'ENQ' + String(id).padStart(6, '0');
+        document.getElementById('modalDate').textContent = date;
+        document.getElementById('modalUpdated').textContent = updated;
+        
+        let badgeHtml = '';
+        if(status === 'New') badgeHtml = '<span class="badge bg-success">New</span>';
+        else if(status === 'Contacted') badgeHtml = '<span class="badge bg-info">Read</span>';
+        else badgeHtml = '<span class="badge bg-secondary">Closed</span>';
+        document.getElementById('modalStatusBadge').innerHTML = badgeHtml;
+        
+        // Populate Enquiry
+        document.getElementById('modalService').textContent = service;
+        document.getElementById('modalCategory').textContent = category;
+        document.getElementById('modalType').textContent = pType;
+        document.getElementById('modalBudget').textContent = budget;
+        document.getElementById('modalRequirements').textContent = reqs;
+        document.getElementById('modalLocation').textContent = location;
+        document.getElementById('modalTimeline').textContent = timeline;
+        document.getElementById('modalMessage').textContent = msg;
+        
+        // Setup Action Buttons
+        document.getElementById('btnCall').href = 'tel:' + phone;
+        document.getElementById('btnEmail').href = 'mailto:' + email;
+        document.getElementById('btnWhatsApp').href = 'https://wa.me/' + phone.replace(/[^0-9]/g, '');
+        
+        // Bind AJAX buttons
+        document.getElementById('btnMarkRead').onclick = () => updateStatus(id, 'mark_read');
+        document.getElementById('btnMarkReplied').onclick = () => updateStatus(id, 'mark_replied');
+        document.getElementById('btnDelete').onclick = () => updateStatus(id, 'delete');
+        
+        // Hide/Show status buttons based on current status
+        document.getElementById('btnMarkRead').style.display = (status === 'New') ? 'inline-block' : 'none';
+        document.getElementById('btnMarkReplied').style.display = (status === 'New' || status === 'Contacted') ? 'inline-block' : 'none';
+        
+        modal.show();
+    }
+    
+    function updateStatus(id, action) {
+        if(action === 'delete' && !confirm('Are you sure you want to delete this enquiry?')) return;
+        
+        fetch(`/api/update-enquiry/${id}/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: JSON.stringify({ action: action })
+        }).then(res => res.json()).then(data => {
+            if(data.status === 'success') {
+                location.reload(); 
+            } else {
+                alert(data.message);
+            }
+        });
+    }
+</script>
+
+{% endblock %}
