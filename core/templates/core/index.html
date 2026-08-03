@@ -35,16 +35,22 @@
   <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"></noscript>
   
-  <!-- Swiper -->
-  <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"></noscript>
+  
 
   <!-- Custom CSS -->
   <link rel="preload" href="{% static 'style.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="{% static 'style.css' %}"></noscript>
 
-  <!-- Performance Preloads -->
-  <link rel="preload" href="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=700" as="image">
+  
+  <!-- Fix font-display for third-party icon fonts -->
+  <style>
+    @font-face { font-family:"Font Awesome 6 Free"; font-style:normal; font-weight:900; font-display:swap; src:url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/webfonts/fa-solid-900.woff2") format("woff2"); }
+    @font-face { font-family:"Font Awesome 6 Free"; font-style:normal; font-weight:400; font-display:swap; src:url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/webfonts/fa-regular-400.woff2") format("woff2"); }
+    @font-face { font-family:"Font Awesome 6 Brands"; font-style:normal; font-weight:400; font-display:swap; src:url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/webfonts/fa-brands-400.woff2") format("woff2"); }
+  </style>
+
+  <!-- Performance Preloads (URL must match the actual <img> src exactly) -->
+  <link rel="preload" href="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=600" as="image" fetchpriority="high">
   
   <!-- SEO & Social Meta Tags -->
   <link rel="canonical" href="https://konnectprojects.in/" />
@@ -63,7 +69,7 @@
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "RealEstateAgent",
+        "@type": ["Organization", "RealEstateAgent", "LocalBusiness"],
         "@id": "https://konnectprojects.in/#organization",
         "name": "Konnect Projects",
         "url": "https://konnectprojects.in/",
@@ -97,6 +103,7 @@
         "isPartOf": {
           "@id": "https://konnectprojects.in/#organization"
         },
+        "publisher": {"@id": "https://konnectprojects.in/#organization"},
         "datePublished": "2023-01-01T08:00:00+00:00",
         "dateModified": "2026-08-03T11:00:00+00:00",
         "description": "Konnect Projects helps you buy, sell, and invest in verified luxury villas, apartments, and open plots across Telangana and AP with expert guidance."
@@ -250,8 +257,8 @@
             </div>
 
             <h1 class="hero-title text-white mb-4">
-              Find the Right Property <br>
-              <span class="gradient-text">with Confidence</span>
+              Best Real Estate Consultant in Hyderabad: <br>
+              <span class="gradient-text">Find the Right Property</span>
             </h1>
 
             <p class="hero-subtitle mb-3 text-white-50">
@@ -286,7 +293,7 @@
             <div class="position-relative">
               <!-- Main image -->
               <div class="rounded-4 overflow-hidden animate-float" style="box-shadow: 0 30px 80px rgba(0,0,0,0.5);">
-                <img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Hyderabad Luxury Real Estate Villa" width="700" height="380" class="w-100 object-fit-cover" style="height: 380px;">
+                <img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Hyderabad Luxury Real Estate Villa" width="700" height="380" class="w-100 object-fit-cover" style="height: 380px;" fetchpriority="high" decoding="async">
                 <div class="position-absolute top-0 start-0 w-100 h-100 rounded-4 hero-img-gradient"></div>
               </div>
 
@@ -321,10 +328,11 @@
           <div class="col-lg-10">
             <div class="p-4 p-md-5 rounded-4 bg-white" style="box-shadow: 0 10px 30px rgba(0,0,0,0.05);" data-aos="fade-up">
               <h2 class="fw-bold mb-3" style="font-family: 'Poppins'; font-size: 1.5rem; color: var(--royal-blue-dark);">
-                What We Do & Who We Serve
+                Key Takeaway Summary
               </h2>
               <p style="color: var(--gray); font-size: 1rem; line-height: 1.8; margin-bottom: 24px;">
-                <strong>Konnect Projects</strong> is a leading real estate consultancy helping families, first-time buyers, and seasoned investors secure highly profitable and legally verified properties across Hyderabad, Telangana, and Andhra Pradesh. Whether you are looking for a <a href="#properties" class="text-decoration-none fw-bold" style="color: var(--gold);">luxury villa</a>, a <a href="#properties" class="text-decoration-none fw-bold" style="color: var(--gold);">commercial space</a>, or a <a href="#properties" class="text-decoration-none fw-bold" style="color: var(--gold);">high-growth open plot</a>, our 15+ years of market expertise ensure you make the best financial decision.
+                <strong>Bottom-line answer:</strong> Konnect Projects is a leading real estate consultancy providing legally verified properties across Hyderabad, Telangana, and Andhra Pradesh.<br><br>
+                <strong>Target Audience & Use Case:</strong> This service is designed for families, first-time homebuyers, and seasoned investors who need expert guidance to secure profitable luxury villas, commercial spaces, and high-growth open plots with zero legal risks.
               </p>
               <ul class="d-flex flex-wrap gap-4 list-unstyled m-0 p-0">
                 <li class="d-flex align-items-center gap-2">
@@ -863,7 +871,7 @@
             How to Buy Property in Hyderabad?
           </h2>
           <p class="mb-4" style="color: var(--gray); font-size: 1.05rem; line-height: 1.7; text-align: left;">
-            <strong>To buy a property in Hyderabad, you should first identify your investment goal (residential or commercial), set a clear budget, and choose a high-growth location like West Hyderabad or emerging DTCP zones. Most importantly, always verify the property's legal titles and RERA/HMDA approvals.</strong>
+            <strong>Direct Answer:</strong> To buy a property in Hyderabad, you should first identify your investment goal, set a clear budget, and choose a high-growth location like West Hyderabad. Most importantly, always verify the property's legal titles and RERA/HMDA approvals.
           </p>
         </div>
         <div class="row">
@@ -1026,7 +1034,6 @@
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
   <script src="{% static 'main.js' %}" defer></script>
 

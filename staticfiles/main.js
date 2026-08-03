@@ -118,31 +118,31 @@ document.addEventListener('DOMContentLoaded', () => {
       title: 'Luxury Villas',
       alt: 'Luxury Villa in Hyderabad',
       desc: 'Premium gated-community villas with world-class amenities in Hyderabad\'s finest neighborhoods.',
-      img: 'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=600',
+      img: 'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=300',
     },
     {
       title: 'Premium Apartments',
       alt: 'Premium Apartment in Hyderabad',
       desc: 'Spacious, modern apartments in prime locations with excellent connectivity and lifestyle features.',
-      img: 'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=600',
+      img: 'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=300',
     },
     {
       title: 'Commercial Spaces',
       alt: 'Commercial Office Space in Hyderabad',
       desc: 'High-return office spaces and retail outlets in Hyderabad\'s booming business districts.',
-      img: 'https://images.pexels.com/photos/302769/pexels-photo-302769.jpeg?auto=compress&cs=tinysrgb&w=600',
+      img: 'https://images.pexels.com/photos/302769/pexels-photo-302769.jpeg?auto=compress&cs=tinysrgb&w=300',
     },
     {
       title: 'Open Plots',
       alt: 'HMDA Approved Open Plot',
       desc: 'Strategically selected plots with strong appreciation potential across Telangana and Andhra Pradesh.',
-      img: 'https://images.pexels.com/photos/210487/pexels-photo-210487.jpeg?auto=compress&cs=tinysrgb&w=600',
+      img: 'https://images.pexels.com/photos/210487/pexels-photo-210487.jpeg?auto=compress&cs=tinysrgb&w=300',
     },
     {
       title: 'Independent Houses',
       alt: 'Independent House in Hyderabad',
       desc: 'Quality independent homes offering comfort, privacy, and long-term value for families.',
-      img: 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=600',
+      img: 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=300',
     },
   ];
 
@@ -150,10 +150,10 @@ document.addEventListener('DOMContentLoaded', () => {
     'Luxury Villas': {
       description: "Discover premium gated-community villas located in Hyderabad's most prestigious neighborhoods.",
       gallery: [
-        'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=400',
-        'https://images.pexels.com/photos/208736/pexels-photo-208736.jpeg?auto=compress&cs=tinysrgb&w=400',
-        'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=400',
-        'https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=400'
+        'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=300',
+        'https://images.pexels.com/photos/208736/pexels-photo-208736.jpeg?auto=compress&cs=tinysrgb&w=300',
+        'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=300',
+        'https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=300'
       ],
       sections: [
         { title: 'Features', icon: '<i class="fas fa-star"></i>', items: ['3 BHK, 4 BHK & 5 BHK Villas', 'Gated Communities', 'Clubhouse & Swimming Pool', 'Landscaped Gardens', 'Bank Loan Assistance'] },
@@ -164,10 +164,10 @@ document.addEventListener('DOMContentLoaded', () => {
     'Premium Apartments': {
       description: "Modern apartments designed for luxury living with excellent connectivity.",
       gallery: [
-        'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=400',
-        'https://images.pexels.com/photos/439391/pexels-photo-439391.jpeg?auto=compress&cs=tinysrgb&w=400',
-        'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=400',
-        'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=400'
+        'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=300',
+        'https://images.pexels.com/photos/439391/pexels-photo-439391.jpeg?auto=compress&cs=tinysrgb&w=300',
+        'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=300',
+        'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=300'
       ],
       sections: [
         { title: 'Features', icon: '<i class="far fa-building"></i>', items: ['2 BHK, 3 BHK, 4 BHK', 'High-rise Towers', 'Clubhouse', 'Swimming Pool'] },
@@ -178,9 +178,9 @@ document.addEventListener('DOMContentLoaded', () => {
     'Commercial Spaces': {
       description: "High-return commercial investment opportunities.",
       gallery: [
-        'https://images.pexels.com/photos/302769/pexels-photo-302769.jpeg?auto=compress&cs=tinysrgb&w=400',
-        'https://images.pexels.com/photos/380768/pexels-photo-380768.jpeg?auto=compress&cs=tinysrgb&w=400',
-        'https://images.pexels.com/photos/267507/pexels-photo-267507.jpeg?auto=compress&cs=tinysrgb&w=400'
+        'https://images.pexels.com/photos/302769/pexels-photo-302769.jpeg?auto=compress&cs=tinysrgb&w=300',
+        'https://images.pexels.com/photos/380768/pexels-photo-380768.jpeg?auto=compress&cs=tinysrgb&w=300',
+        'https://images.pexels.com/photos/267507/pexels-photo-267507.jpeg?auto=compress&cs=tinysrgb&w=300'
       ],
       sections: [
         { title: 'Available Properties', icon: '<i class="fas fa-briefcase"></i>', items: ['Office Spaces', 'Retail Shops', 'IT Office Floors', 'Commercial Buildings', 'Showrooms', 'Food Court Spaces'] }
@@ -190,9 +190,9 @@ document.addEventListener('DOMContentLoaded', () => {
     'Open Plots': {
       description: "Verified investment plots with excellent appreciation potential.",
       gallery: [
-        'https://images.pexels.com/photos/210487/pexels-photo-210487.jpeg?auto=compress&cs=tinysrgb&w=400',
-        'https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&w=400',
-        'https://images.pexels.com/photos/1105754/pexels-photo-1105754.jpeg?auto=compress&cs=tinysrgb&w=400'
+        'https://images.pexels.com/photos/210487/pexels-photo-210487.jpeg?auto=compress&cs=tinysrgb&w=300',
+        'https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&w=300',
+        'https://images.pexels.com/photos/1105754/pexels-photo-1105754.jpeg?auto=compress&cs=tinysrgb&w=300'
       ],
       sections: [
         { title: 'Plot Sizes', icon: '<i class="fas fa-expand"></i>', items: ['150 Sq. Yards', '200 Sq. Yards', '300 Sq. Yards', '400+ Sq. Yards'] },
@@ -203,9 +203,9 @@ document.addEventListener('DOMContentLoaded', () => {
     'Independent Houses': {
       description: "Beautiful independent homes offering privacy, comfort, and long-term value.",
       gallery: [
-        'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=400',
-        'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=400',
-        'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=400'
+        'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=300',
+        'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=300',
+        'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=300'
       ],
       sections: [
         { title: 'Features', icon: '<i class="fas fa-home"></i>', items: ['2 BHK & 3 BHK', 'Duplex Houses', 'Triplex Houses', 'Parking', 'Loan Assistance'] },
@@ -337,7 +337,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-
   // WhatsApp Logic
   window.openWhatsApp = function(title) {
     const propertyMessages = {
@@ -362,17 +361,17 @@ Thank you.`,
       
       'Premium Apartments': `🏢 Hello Konnect Projects,
 
-I'm interested in your Premium Apartments in Hyderabad.
+I'm interested in your Premium Apartments.
 
-Please share:
+Please share the following details:
 
 ✅ Available Apartments
-✅ 2/3/4 BHK Options
+✅ 2 BHK / 3 BHK / 4 BHK Options
 ✅ Floor Plans
-✅ Amenities
+✅ Amenities & Features
 ✅ Project Brochure
-✅ Site Visit
-✅ Loan Assistance
+✅ Site Visit Availability
+✅ Home Loan Assistance
 ✅ Legal Documentation
 
 Thank you.`,
@@ -393,7 +392,7 @@ Please share:
 
 Thank you.`,
       
-      'Open Plots': `🌳 Hello Konnect Projects,
+      'Open Plots': `🌱 Hello Konnect Projects,
 
 I'm interested in purchasing an Open Plot.
 
@@ -410,7 +409,7 @@ Please share:
 
 Thank you.`,
       
-      'Independent Houses': `🏠 Hello Konnect Projects,
+      'Independent Houses': `🏡 Hello Konnect Projects,
 
 I'm interested in your Independent Houses in Hyderabad.
 
@@ -442,7 +441,7 @@ Thank you.`
     let badgeText = title.includes('Villa') || title.includes('House') ? 'RESIDENTIAL' : (title.includes('Commercial') ? 'COMMERCIAL' : 'REAL ESTATE');
     document.getElementById('modalPropertyBadge').innerText = badgeText;
     document.getElementById('modalPropertyTitle').innerText = title;
-    document.getElementById('modalPropertyDesc').innerText = details.desc;
+    document.getElementById('modalPropertyDesc').innerText = details.description;
     
     // Set Main Image (use first gallery image)
     if(details.gallery && details.gallery.length > 0) {
@@ -480,14 +479,7 @@ Thank you.`
     // Setup WhatsApp Button
     const waBtn = document.getElementById('modalBtnWhatsApp');
     waBtn.onclick = function() {
-        const msg = propertyMessages[title] || `🏡 Hello Konnect Projects,
-
-I'm interested in ${title}.
-
-Please share the available options and details.
-
-Thank you.`;
-        window.open(`https://wa.me/919059598777?text=${encodeURIComponent(msg)}`, '_blank');
+        window.openWhatsApp(title);
     };
     
     // Show Modal

@@ -1,0 +1,414 @@
+﻿From 2aa295b6ed9685b309e34379dedff86a8656352a Mon Sep 17 00:00:00 2001
+From: Talari <talari@konnect.dev>
+Date: Mon, 3 Aug 2026 05:44:35 +0000
+Subject: [PATCH] perf: fix Lighthouse audits
+
+---
+ core/templates/core/index.html |  35 ++++++-----
+ rekonnect_project/settings.py  |   5 ++
+ static/main.js                 |  37 +++++++----
+ staticfiles/main.js            | 109 +++++++++++++++++----------------
+ 4 files changed, 108 insertions(+), 78 deletions(-)
+
+diff --git a/core/templates/core/index.html b/core/templates/core/index.html
+index fae52a0..b888092 100644
+--- a/core/templates/core/index.html
++++ b/core/templates/core/index.html
+@@ -18,7 +18,10 @@
+   <!-- Preconnect -->
+   <link rel="preconnect" href="https://fonts.googleapis.com" />
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+-  
++  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
++  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
++  <link rel="preconnect" href="https://images.pexels.com" />
++
+   <!-- Bootstrap 5 CSS -->
+   <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+   <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"></noscript>
+@@ -26,23 +29,28 @@
+   <!-- FontAwesome -->
+   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"></noscript>
+-  
+-  <!-- Google Fonts -->
+-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
++
++  <!-- Google Fonts (async to avoid render-blocking) -->
++  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
++  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;500;600;700&display=swap"></noscript>
+ 
+   <!-- AOS Animation -->
+   <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+   <noscript><link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"></noscript>
+-  
+-  <!-- Swiper -->
+-  <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+-  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"></noscript>
+ 
+-  <!-- Custom CSS -->
+-  <link rel="stylesheet" href="{% static 'style.css' %}">
++  <!-- Custom CSS (async to avoid render-blocking) -->
++  <link rel="preload" href="{% static 'style.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
++  <noscript><link rel="stylesheet" href="{% static 'style.css' %}"></noscript>
++
++  <!-- Fix font-display for third-party icon fonts (text stays visible while fonts load) -->
++  <style>
++    @font-face { font-family:"Font Awesome 6 Free"; font-style:normal; font-weight:900; font-display:swap; src:url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/webfonts/fa-solid-900.woff2") format("woff2"); }
++    @font-face { font-family:"Font Awesome 6 Free"; font-style:normal; font-weight:400; font-display:swap; src:url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/webfonts/fa-regular-400.woff2") format("woff2"); }
++    @font-face { font-family:"Font Awesome 6 Brands"; font-style:normal; font-weight:400; font-display:swap; src:url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/webfonts/fa-brands-400.woff2") format("woff2"); }
++  </style>
+ 
+-  <!-- Performance Preloads -->
+-  <link rel="preload" href="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=700" as="image">
++  <!-- Performance Preloads (URL must match the actual <img> src exactly, or the browser fetches it twice) -->
++  <link rel="preload" href="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=600" as="image" fetchpriority="high">
+   
+   <!-- SEO & Social Meta Tags -->
+   <link rel="canonical" href="https://konnectprojects.in/" />
+@@ -218,7 +226,7 @@
+             <div class="position-relative">
+               <!-- Main image -->
+               <div class="rounded-4 overflow-hidden animate-float" style="box-shadow: 0 30px 80px rgba(0,0,0,0.5);">
+-                <img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Hyderabad Luxury Real Estate Villa" width="700" height="380" class="w-100 object-fit-cover" style="height: 380px;">
++                <img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Hyderabad Luxury Real Estate Villa" width="700" height="380" class="w-100 object-fit-cover" style="height: 380px;" fetchpriority="high" decoding="async">
+                 <div class="position-absolute top-0 start-0 w-100 h-100 rounded-4 hero-img-gradient"></div>
+               </div>
+ 
+@@ -760,7 +768,6 @@
+   <!-- Scripts -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+   <script src="{% static 'main.js' %}" defer></script>
+ 
+diff --git a/rekonnect_project/settings.py b/rekonnect_project/settings.py
+index d54d3d3..80f14be 100644
+--- a/rekonnect_project/settings.py
++++ b/rekonnect_project/settings.py
+@@ -120,6 +120,11 @@ STATIC_URL = 'static/'
+ STATICFILES_DIRS = [BASE_DIR / 'static']
+ STATIC_ROOT = BASE_DIR / 'staticfiles'
+ 
++# Long cache lifetime for our own static assets (style.css, main.js, images).
++# Bump this only if a static file's *content* changes without a filename
++# change, since browsers/CDNs will hold onto the old copy for a year.
++WHITENOISE_MAX_AGE = 31536000
++
+ MEDIA_URL = 'media/'
+ MEDIA_ROOT = BASE_DIR / 'media'
+ 
+diff --git a/static/main.js b/static/main.js
+index 95a58af..ae7fa85 100644
+--- a/static/main.js
++++ b/static/main.js
+@@ -27,12 +27,22 @@ document.addEventListener('DOMContentLoaded', () => {
+   const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+ 
+   const scrollHandler = () => {
++    // --- Reads first (batched) to avoid forced synchronous reflow ---
+     const scrollTop = window.scrollY;
+     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+     const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+-    
++
++    let current = '';
++    sections.forEach(section => {
++      const sectionTop = section.offsetTop;
++      if (scrollTop >= sectionTop - 150) {
++        current = section.getAttribute('id');
++      }
++    });
++
++    // --- Writes after all reads ---
+     if (scrollProgress) scrollProgress.style.width = progress + '%';
+-    
++
+     if (scrollTop > 60) {
+       navbar.classList.add('scrolled');
+       backToTop.classList.remove('d-none');
+@@ -41,15 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
+       backToTop.classList.add('d-none');
+     }
+ 
+-    // Active link updating
+-    let current = '';
+-    sections.forEach(section => {
+-      const sectionTop = section.offsetTop;
+-      if (scrollY >= sectionTop - 150) {
+-        current = section.getAttribute('id');
+-      }
+-    });
+-
+     navLinks.forEach(link => {
+       link.classList.remove('active');
+       if (link.getAttribute('href') === #) {
+@@ -57,7 +58,19 @@ document.addEventListener('DOMContentLoaded', () => {
+       }
+     });
+   };
+-  window.addEventListener('scroll', scrollHandler, { passive: true });
++
++  // Throttle to one run per animation frame so fast scrolling doesn't
++  // stack up redundant layout reads/writes.
++  let scrollTicking = false;
++  window.addEventListener('scroll', () => {
++    if (!scrollTicking) {
++      requestAnimationFrame(() => {
++        scrollHandler();
++        scrollTicking = false;
++      });
++      scrollTicking = true;
++    }
++  }, { passive: true });
+ 
+   // Smooth scroll
+   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+diff --git a/staticfiles/main.js b/staticfiles/main.js
+index 1ca228a..ae7fa85 100644
+--- a/staticfiles/main.js
++++ b/staticfiles/main.js
+@@ -27,12 +27,22 @@ document.addEventListener('DOMContentLoaded', () => {
+   const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+ 
+   const scrollHandler = () => {
++    // --- Reads first (batched) to avoid forced synchronous reflow ---
+     const scrollTop = window.scrollY;
+     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+     const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+-    
++
++    let current = '';
++    sections.forEach(section => {
++      const sectionTop = section.offsetTop;
++      if (scrollTop >= sectionTop - 150) {
++        current = section.getAttribute('id');
++      }
++    });
++
++    // --- Writes after all reads ---
+     if (scrollProgress) scrollProgress.style.width = progress + '%';
+-    
++
+     if (scrollTop > 60) {
+       navbar.classList.add('scrolled');
+       backToTop.classList.remove('d-none');
+@@ -41,15 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
+       backToTop.classList.add('d-none');
+     }
+ 
+-    // Active link updating
+-    let current = '';
+-    sections.forEach(section => {
+-      const sectionTop = section.offsetTop;
+-      if (scrollY >= sectionTop - 150) {
+-        current = section.getAttribute('id');
+-      }
+-    });
+-
+     navLinks.forEach(link => {
+       link.classList.remove('active');
+       if (link.getAttribute('href') === #) {
+@@ -57,7 +58,19 @@ document.addEventListener('DOMContentLoaded', () => {
+       }
+     });
+   };
+-  window.addEventListener('scroll', scrollHandler, { passive: true });
++
++  // Throttle to one run per animation frame so fast scrolling doesn't
++  // stack up redundant layout reads/writes.
++  let scrollTicking = false;
++  window.addEventListener('scroll', () => {
++    if (!scrollTicking) {
++      requestAnimationFrame(() => {
++        scrollHandler();
++        scrollTicking = false;
++      });
++      scrollTicking = true;
++    }
++  }, { passive: true });
+ 
+   // Smooth scroll
+   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+@@ -118,31 +131,31 @@ document.addEventListener('DOMContentLoaded', () => {
+       title: 'Luxury Villas',
+       alt: 'Luxury Villa in Hyderabad',
+       desc: 'Premium gated-community villas with world-class amenities in Hyderabad\'s finest neighborhoods.',
+-      img: 'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=600',
++      img: 'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=300',
+     },
+     {
+       title: 'Premium Apartments',
+       alt: 'Premium Apartment in Hyderabad',
+       desc: 'Spacious, modern apartments in prime locations with excellent connectivity and lifestyle features.',
+-      img: 'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=600',
++      img: 'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=300',
+     },
+     {
+       title: 'Commercial Spaces',
+       alt: 'Commercial Office Space in Hyderabad',
+       desc: 'High-return office spaces and retail outlets in Hyderabad\'s booming business districts.',
+-      img: 'https://images.pexels.com/photos/302769/pexels-photo-302769.jpeg?auto=compress&cs=tinysrgb&w=600',
++      img: 'https://images.pexels.com/photos/302769/pexels-photo-302769.jpeg?auto=compress&cs=tinysrgb&w=300',
+     },
+     {
+       title: 'Open Plots',
+       alt: 'HMDA Approved Open Plot',
+       desc: 'Strategically selected plots with strong appreciation potential across Telangana and Andhra Pradesh.',
+-      img: 'https://images.pexels.com/photos/210487/pexels-photo-210487.jpeg?auto=compress&cs=tinysrgb&w=600',
++      img: 'https://images.pexels.com/photos/210487/pexels-photo-210487.jpeg?auto=compress&cs=tinysrgb&w=300',
+     },
+     {
+       title: 'Independent Houses',
+       alt: 'Independent House in Hyderabad',
+       desc: 'Quality independent homes offering comfort, privacy, and long-term value for families.',
+-      img: 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=600',
++      img: 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=300',
+     },
+   ];
+ 
+@@ -150,10 +163,10 @@ document.addEventListener('DOMContentLoaded', () => {
+     'Luxury Villas': {
+       description: "Discover premium gated-community villas located in Hyderabad's most prestigious neighborhoods.",
+       gallery: [
+-        'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=400',
+-        'https://images.pexels.com/photos/208736/pexels-photo-208736.jpeg?auto=compress&cs=tinysrgb&w=400',
+-        'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=400',
+-        'https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=400'
++        'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=300',
++        'https://images.pexels.com/photos/208736/pexels-photo-208736.jpeg?auto=compress&cs=tinysrgb&w=300',
++        'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=300',
++        'https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=300'
+       ],
+       sections: [
+         { title: 'Features', icon: '<i class="fas fa-star"></i>', items: ['3 BHK, 4 BHK & 5 BHK Villas', 'Gated Communities', 'Clubhouse & Swimming Pool', 'Landscaped Gardens', 'Bank Loan Assistance'] },
+@@ -164,10 +177,10 @@ document.addEventListener('DOMContentLoaded', () => {
+     'Premium Apartments': {
+       description: "Modern apartments designed for luxury living with excellent connectivity.",
+       gallery: [
+-        'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=400',
+-        'https://images.pexels.com/photos/439391/pexels-photo-439391.jpeg?auto=compress&cs=tinysrgb&w=400',
+-        'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=400',
+-        'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=400'
++        'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=300',
++        'https://images.pexels.com/photos/439391/pexels-photo-439391.jpeg?auto=compress&cs=tinysrgb&w=300',
++        'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=300',
++        'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=300'
+       ],
+       sections: [
+         { title: 'Features', icon: '<i class="far fa-building"></i>', items: ['2 BHK, 3 BHK, 4 BHK', 'High-rise Towers', 'Clubhouse', 'Swimming Pool'] },
+@@ -178,9 +191,9 @@ document.addEventListener('DOMContentLoaded', () => {
+     'Commercial Spaces': {
+       description: "High-return commercial investment opportunities.",
+       gallery: [
+-        'https://images.pexels.com/photos/302769/pexels-photo-302769.jpeg?auto=compress&cs=tinysrgb&w=400',
+-        'https://images.pexels.com/photos/380768/pexels-photo-380768.jpeg?auto=compress&cs=tinysrgb&w=400',
+-        'https://images.pexels.com/photos/267507/pexels-photo-267507.jpeg?auto=compress&cs=tinysrgb&w=400'
++        'https://images.pexels.com/photos/302769/pexels-photo-302769.jpeg?auto=compress&cs=tinysrgb&w=300',
++        'https://images.pexels.com/photos/380768/pexels-photo-380768.jpeg?auto=compress&cs=tinysrgb&w=300',
++        'https://images.pexels.com/photos/267507/pexels-photo-267507.jpeg?auto=compress&cs=tinysrgb&w=300'
+       ],
+       sections: [
+         { title: 'Available Properties', icon: '<i class="fas fa-briefcase"></i>', items: ['Office Spaces', 'Retail Shops', 'IT Office Floors', 'Commercial Buildings', 'Showrooms', 'Food Court Spaces'] }
+@@ -190,9 +203,9 @@ document.addEventListener('DOMContentLoaded', () => {
+     'Open Plots': {
+       description: "Verified investment plots with excellent appreciation potential.",
+       gallery: [
+-        'https://images.pexels.com/photos/210487/pexels-photo-210487.jpeg?auto=compress&cs=tinysrgb&w=400',
+-        'https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&w=400',
+-        'https://images.pexels.com/photos/1105754/pexels-photo-1105754.jpeg?auto=compress&cs=tinysrgb&w=400'
++        'https://images.pexels.com/photos/210487/pexels-photo-210487.jpeg?auto=compress&cs=tinysrgb&w=300',
++        'https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&w=300',
++        'https://images.pexels.com/photos/1105754/pexels-photo-1105754.jpeg?auto=compress&cs=tinysrgb&w=300'
+       ],
+       sections: [
+         { title: 'Plot Sizes', icon: '<i class="fas fa-expand"></i>', items: ['150 Sq. Yards', '200 Sq. Yards', '300 Sq. Yards', '400+ Sq. Yards'] },
+@@ -203,9 +216,9 @@ document.addEventListener('DOMContentLoaded', () => {
+     'Independent Houses': {
+       description: "Beautiful independent homes offering privacy, comfort, and long-term value.",
+       gallery: [
+-        'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=400',
+-        'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=400',
+-        'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=400'
++        'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=300',
++        'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=300',
++        'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=300'
+       ],
+       sections: [
+         { title: 'Features', icon: '<i class="fas fa-home"></i>', items: ['2 BHK & 3 BHK', 'Duplex Houses', 'Triplex Houses', 'Parking', 'Loan Assistance'] },
+@@ -337,7 +350,6 @@ document.addEventListener('DOMContentLoaded', () => {
+     });
+   }
+ 
+-
+   // WhatsApp Logic
+   window.openWhatsApp = function(title) {
+     const propertyMessages = {
+@@ -362,17 +374,17 @@ Thank you.,
+       
+       'Premium Apartments': 🏢 Hello Konnect Projects,
+ 
+-I'm interested in your Premium Apartments in Hyderabad.
++I'm interested in your Premium Apartments.
+ 
+-Please share:
++Please share the following details:
+ 
+ ✅ Available Apartments
+-✅ 2/3/4 BHK Options
++✅ 2 BHK / 3 BHK / 4 BHK Options
+ ✅ Floor Plans
+-✅ Amenities
++✅ Amenities & Features
+ ✅ Project Brochure
+-✅ Site Visit
+-✅ Loan Assistance
++✅ Site Visit Availability
++✅ Home Loan Assistance
+ ✅ Legal Documentation
+ 
+ Thank you.,
+@@ -393,7 +405,7 @@ Please share:
+ 
+ Thank you.,
+       
+-      'Open Plots': 🌳 Hello Konnect Projects,
++      'Open Plots': 🌱 Hello Konnect Projects,
+ 
+ I'm interested in purchasing an Open Plot.
+ 
+@@ -410,7 +422,7 @@ Please share:
+ 
+ Thank you.,
+       
+-      'Independent Houses': 🏠 Hello Konnect Projects,
++      'Independent Houses': 🏡 Hello Konnect Projects,
+ 
+ I'm interested in your Independent Houses in Hyderabad.
+ 
+@@ -442,7 +454,7 @@ Thank you.
+     let badgeText = title.includes('Villa') || title.includes('House') ? 'RESIDENTIAL' : (title.includes('Commercial') ? 'COMMERCIAL' : 'REAL ESTATE');
+     document.getElementById('modalPropertyBadge').innerText = badgeText;
+     document.getElementById('modalPropertyTitle').innerText = title;
+-    document.getElementById('modalPropertyDesc').innerText = details.desc;
++    document.getElementById('modalPropertyDesc').innerText = details.description;
+     
+     // Set Main Image (use first gallery image)
+     if(details.gallery && details.gallery.length > 0) {
+@@ -480,14 +492,7 @@ Thank you.
+     // Setup WhatsApp Button
+     const waBtn = document.getElementById('modalBtnWhatsApp');
+     waBtn.onclick = function() {
+-        const msg = propertyMessages[title] || 🏡 Hello Konnect Projects,
+-
+-I'm interested in .
+-
+-Please share the available options and details.
+-
+-Thank you.;
+-        window.open(https://wa.me/919059598777?text=, '_blank');
++        window.openWhatsApp(title);
+     };
+     
+     // Show Modal

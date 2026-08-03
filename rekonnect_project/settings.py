@@ -120,6 +120,9 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+# Long cache lifetime for our own static assets (style.css, main.js, images).
+WHITENOISE_MAX_AGE = 31536000
+
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
