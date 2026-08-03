@@ -41,14 +41,6 @@
   <link rel="preload" href="{% static 'style.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="{% static 'style.css' %}"></noscript>
 
-  
-  <!-- Fix font-display for third-party icon fonts -->
-  <style>
-    @font-face { font-family:"Font Awesome 6 Free"; font-style:normal; font-weight:900; font-display:swap; src:url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/webfonts/fa-solid-900.woff2") format("woff2"); }
-    @font-face { font-family:"Font Awesome 6 Free"; font-style:normal; font-weight:400; font-display:swap; src:url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/webfonts/fa-regular-400.woff2") format("woff2"); }
-    @font-face { font-family:"Font Awesome 6 Brands"; font-style:normal; font-weight:400; font-display:swap; src:url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/webfonts/fa-brands-400.woff2") format("woff2"); }
-  </style>
-
   <!-- Performance Preloads (URL must match the actual <img> src exactly) -->
   <link rel="preload" href="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=600" as="image" fetchpriority="high">
   
@@ -1034,7 +1026,6 @@
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
   <script src="{% static 'main.js' %}" defer></script>
 
     <!-- Custom Property Modal -->
