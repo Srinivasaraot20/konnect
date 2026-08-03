@@ -1,0 +1,105 @@
+{% extends "dashboard/base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Edit Lead: #{{ enquiry.id }}</h1>
+        <a href="{% url 'core:dashboard_enquiry_detail' enquiry.id %}" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
+            <i class="fas fa-arrow-left fa-sm text-white-50"></i> Back to Detail
+        </a>
+    </div>
+
+    {% if messages %}
+    <div class="row">
+        <div class="col-12">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Edit Lead Information</h6>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bold">Full Name</label>
+                                <input type="text" class="form-control" name="full_name" value="{{ enquiry.full_name }}" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bold">Phone Number</label>
+                                <input type="text" class="form-control" name="mobile_number" value="{{ enquiry.mobile_number }}" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label class="font-weight-bold">Email Address</label>
+                                <input type="email" class="form-control" name="email_address" value="{{ enquiry.email_address }}">
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bold">Preferred Location</label>
+                                <input type="text" class="form-control" name="preferred_location" value="{{ enquiry.preferred_location }}">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bold">Property Type</label>
+                                <input type="text" class="form-control" name="preferred_property_type" value="{{ enquiry.preferred_property_type }}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bold">Investment Budget</label>
+                                <input type="text" class="form-control" name="budget" value="{{ enquiry.budget }}">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bold">Investment Timeline</label>
+                                <input type="text" class="form-control" name="timeline" value="{{ enquiry.timeline }}">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="font-weight-bold">Customer Notes</label>
+                            <textarea class="form-control" name="message" rows="3">{{ enquiry.message }}</textarea>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group">
+                            <label class="font-weight-bold text-danger">Lead Status</label>
+                            <select class="form-control font-weight-bold" name="status">
+                                {% for choice_value, choice_label in status_choices %}
+                                <option value="{{ choice_value }}" {% if enquiry.status == choice_value %}selected{% endif %}>{{ choice_label }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="font-weight-bold text-primary">Admin Notes (Internal Use Only)</label>
+                            <textarea class="form-control" name="admin_notes" rows="4" placeholder="Enter internal notes, follow-up reminders, etc.">{{ enquiry.admin_notes }}</textarea>
+                        </div>
+
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Changes</button>
+                            <a href="{% url 'core:dashboard_enquiry_detail' enquiry.id %}" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

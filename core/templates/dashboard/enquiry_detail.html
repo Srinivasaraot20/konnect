@@ -1,0 +1,132 @@
+{% extends "dashboard/base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Lead / Enquiry Details: #{{ enquiry.id }}</h1>
+        <a href="{% url 'core:dashboard_enquiries' %}" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
+            <i class="fas fa-arrow-left fa-sm text-white-50"></i> Back to Enquiries
+        </a>
+    </div>
+
+    <div class="row">
+        <!-- Customer Info -->
+        <div class="col-lg-6">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Customer Information</h6>
+                    <div>
+                        <a href="tel:{{ enquiry.mobile_number }}" class="btn btn-sm btn-success"><i class="fas fa-phone"></i> Call</a>
+                        <a href="https://wa.me/{{ enquiry.mobile_number|slice:'1:' if enquiry.mobile_number|startswith:'+' else '91'|add:enquiry.mobile_number }}" target="_blank" class="btn btn-sm btn-success" style="background:#25D366; border-color:#25D366;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-borderless">
+                        <tr>
+                            <th width="35%">Name</th>
+                            <td>{{ enquiry.full_name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Phone</th>
+                            <td>{{ enquiry.mobile_number }}</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>{{ enquiry.email_address|default:"-" }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Customer Notes</h6>
+                </div>
+                <div class="card-body">
+                    <p>{{ enquiry.message|default:"No additional notes provided." }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Property Req & Lead Management -->
+        <div class="col-lg-6">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Property Requirement</h6>
+                </div>
+                <div class="card-body">
+                    <table class="table table-borderless">
+                        <tr>
+                            <th width="35%">Location</th>
+                            <td>{{ enquiry.preferred_location|default:"-" }}</td>
+                        </tr>
+                        <tr>
+                            <th>Property Type</th>
+                            <td>{{ enquiry.preferred_property_type|default:"-" }}</td>
+                        </tr>
+                        <tr>
+                            <th>Budget</th>
+                            <td>{{ enquiry.budget|default:"-" }}</td>
+                        </tr>
+                        <tr>
+                            <th>Timeline</th>
+                            <td>{{ enquiry.timeline|default:"-" }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card shadow mb-4 border-left-primary">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Lead Management</h6>
+                    <a href="{% url 'core:dashboard_enquiry_edit' enquiry.id %}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Edit Status / Notes</a>
+                </div>
+                <div class="card-body">
+                    <table class="table table-borderless">
+                        <tr>
+                            <th width="35%">Current Status</th>
+                            <td>
+                                <h4>
+                                {% if enquiry.status == 'New' %}
+                                    <span class="badge badge-primary">New</span>
+                                {% elif enquiry.status == 'Contacted' %}
+                                    <span class="badge badge-info">Contacted</span>
+                                {% elif enquiry.status == 'Follow Up' %}
+                                    <span class="badge badge-warning">Follow Up</span>
+                                {% elif enquiry.status == 'Interested' %}
+                                    <span class="badge badge-primary">Interested</span>
+                                {% elif enquiry.status == 'Site Visit' %}
+                                    <span class="badge badge-info">Site Visit</span>
+                                {% elif enquiry.status == 'Negotiation' %}
+                                    <span class="badge badge-warning">Negotiation</span>
+                                {% elif enquiry.status == 'Sold' %}
+                                    <span class="badge badge-success">Sold</span>
+                                {% elif enquiry.status == 'Not Interested' %}
+                                    <span class="badge badge-danger">Not Interested</span>
+                                {% else %}
+                                    <span class="badge badge-secondary">{{ enquiry.status }}</span>
+                                {% endif %}
+                                </h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Admin Notes (Internal)</th>
+                            <td class="text-gray-800" style="background:#f8f9fc; padding: 10px; border-radius: 5px;">
+                                {{ enquiry.admin_notes|linebreaksbr|default:"No internal notes." }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Submitted Date</th>
+                            <td>{{ enquiry.enquiry_date|date:"d M Y, h:i A" }}</td>
+                        </tr>
+                        <tr>
+                            <th>Last Updated</th>
+                            <td>{{ enquiry.last_updated|date:"d M Y, h:i A" }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

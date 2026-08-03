@@ -777,26 +777,27 @@
           </div>
 
           <div class="col-lg-6" data-aos="fade-left">
-            <form id="contactForm" class="p-4 rounded-4" style="background: var(--light-bg); border: 1px solid var(--border);">
+            <form id="contactForm" method="POST" action="{% url 'core:submit_enquiry' %}" class="p-4 rounded-4" style="background: var(--light-bg); border: 1px solid var(--border);">
+              {% csrf_token %}
               <div class="row g-3 mb-3">
                 <div class="col-sm-6">
                   <label class="form-label fw-bold" style="font-family:'Montserrat'; font-size:0.78rem; color:var(--royal-blue-dark);">Full Name *</label>
-                  <input type="text" id="formName" required class="form-input" placeholder="Your full name">
+                  <input type="text" id="formName" name="name" required class="form-input" placeholder="Your full name">
                 </div>
                 <div class="col-sm-6">
                   <label class="form-label fw-bold" style="font-family:'Montserrat'; font-size:0.78rem; color:var(--royal-blue-dark);">Phone Number *</label>
-                  <input type="tel" id="formPhone" required class="form-input" placeholder="+91 98765 43210">
+                  <input type="tel" id="formPhone" name="phone" required class="form-input" placeholder="+91 98765 43210">
                 </div>
               </div>
               
               <div class="row g-3 mb-3">
                 <div class="col-sm-6">
                   <label class="form-label fw-bold" style="font-family:'Montserrat'; font-size:0.78rem; color:var(--royal-blue-dark);">Email Address</label>
-                  <input type="email" id="formEmail" class="form-input" placeholder="you@example.com">
+                  <input type="email" id="formEmail" name="email" class="form-input" placeholder="you@example.com">
                 </div>
                 <div class="col-sm-6">
                   <label class="form-label fw-bold" style="font-family:'Montserrat'; font-size:0.78rem; color:var(--royal-blue-dark);">Preferred Location</label>
-                  <select id="formLocation" class="form-input form-select custom-select" aria-label="Select preferred location">
+                  <select id="formLocation" name="location" required class="form-input form-select custom-select" aria-label="Select preferred location">
                     <option value="">Select location</option>
                     <option>Hyderabad (Premium Localities)</option>
                     <option>Telangana (Other Districts)</option>
@@ -808,16 +809,16 @@
               <div class="mb-3">
                 <label class="form-label fw-bold" style="font-family:'Montserrat'; font-size:0.78rem; color:var(--royal-blue-dark);">Property Type</label>
                 <div class="d-flex flex-column gap-1">
-                  <label class="d-flex align-items-center gap-2" style="font-size:0.85rem;"><input type="radio" name="propType" value="Luxury Villa / Premium Apartment" class="custom-radio"> Luxury Villa / Premium Apartment</label>
-                  <label class="d-flex align-items-center gap-2" style="font-size:0.85rem;"><input type="radio" name="propType" value="Commercial Office / Retail Space" class="custom-radio"> Commercial Office / Retail Space</label>
-                  <label class="d-flex align-items-center gap-2" style="font-size:0.85rem;"><input type="radio" name="propType" value="Strategic Open Plot" class="custom-radio"> Strategic Open Plot</label>
-                  <label class="d-flex align-items-center gap-2" style="font-size:0.85rem;"><input type="radio" name="propType" value="Affordable Independent House" class="custom-radio"> Affordable Independent House</label>
+                  <label class="d-flex align-items-center gap-2" style="font-size:0.85rem;"><input type="radio" name="propType" required value="Luxury Villa / Premium Apartment" class="custom-radio"> Luxury Villa / Premium Apartment</label>
+                  <label class="d-flex align-items-center gap-2" style="font-size:0.85rem;"><input type="radio" name="propType" required value="Commercial Office / Retail Space" class="custom-radio"> Commercial Office / Retail Space</label>
+                  <label class="d-flex align-items-center gap-2" style="font-size:0.85rem;"><input type="radio" name="propType" required value="Strategic Open Plot" class="custom-radio"> Strategic Open Plot</label>
+                  <label class="d-flex align-items-center gap-2" style="font-size:0.85rem;"><input type="radio" name="propType" required value="Affordable Independent House" class="custom-radio"> Affordable Independent House</label>
                 </div>
               </div>
 
               <div class="mb-3">
                 <label class="form-label fw-bold" style="font-family:'Montserrat'; font-size:0.78rem; color:var(--royal-blue-dark);">Investment Budget</label>
-                <select id="formBudget" class="form-input form-select custom-select" aria-label="Select budget range">
+                <select id="formBudget" name="budget" required class="form-input form-select custom-select" aria-label="Select budget range">
                   <option value="">Select budget range</option>
                   <option>Under &#8377;50 Lakhs</option>
                   <option>&#8377;50 Lakhs - &#8377;1 Crore</option>
@@ -830,15 +831,15 @@
               <div class="mb-3">
                 <label class="form-label fw-bold" style="font-family:'Montserrat'; font-size:0.78rem; color:var(--royal-blue-dark);">Investment Timeline</label>
                 <div class="d-flex flex-column gap-1">
-                  <label class="d-flex align-items-center gap-2" style="font-size:0.85rem;"><input type="radio" name="timeline" value="Immediate (Within 30 days)" class="custom-radio"> Immediate (Within 30 days)</label>
-                  <label class="d-flex align-items-center gap-2" style="font-size:0.85rem;"><input type="radio" name="timeline" value="Next 3&ndash;6 months" class="custom-radio"> Next 3&ndash;6 months</label>
-                  <label class="d-flex align-items-center gap-2" style="font-size:0.85rem;"><input type="radio" name="timeline" value="Just researching the market" class="custom-radio"> Just researching the market</label>
+                  <label class="d-flex align-items-center gap-2" style="font-size:0.85rem;"><input type="radio" name="timeline" required value="Immediate (Within 30 days)" class="custom-radio"> Immediate (Within 30 days)</label>
+                  <label class="d-flex align-items-center gap-2" style="font-size:0.85rem;"><input type="radio" name="timeline" required value="Next 3&ndash;6 months" class="custom-radio"> Next 3&ndash;6 months</label>
+                  <label class="d-flex align-items-center gap-2" style="font-size:0.85rem;"><input type="radio" name="timeline" required value="Just researching the market" class="custom-radio"> Just researching the market</label>
                 </div>
               </div>
 
               <div class="mb-4">
                 <label class="form-label fw-bold" style="font-family:'Montserrat'; font-size:0.78rem; color:var(--royal-blue-dark);">Additional Notes</label>
-                <textarea id="formMessage" rows="3" class="form-input" placeholder="Tell us about your requirements..."></textarea>
+                <textarea id="formMessage" name="message" rows="3" class="form-input" placeholder="Tell us about your requirements..."></textarea>
               </div>
 
               <div class="d-flex flex-wrap gap-3">

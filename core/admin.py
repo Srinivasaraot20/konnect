@@ -64,10 +64,11 @@ def export_to_csv(modeladmin, request, queryset):
     return response
 
 class ContactEnquiryAdmin(admin.ModelAdmin):
-    list_display = ('full_name', 'mobile_number', 'email_address', 'status', 'enquiry_date')
-    list_filter = ('status', 'enquiry_date')
+    list_display = ('full_name', 'mobile_number', 'preferred_location', 'preferred_property_type', 'budget', 'status', 'enquiry_date')
+    list_filter = ('status', 'preferred_location', 'preferred_property_type', 'budget', 'enquiry_date')
     search_fields = ('full_name', 'mobile_number', 'email_address')
     list_editable = ('status',)
+    readonly_fields = ('enquiry_date', 'last_updated')
     actions = [export_to_csv]
 
 class AdminUserProfileAdmin(admin.ModelAdmin):

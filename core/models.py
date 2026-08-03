@@ -68,6 +68,12 @@ class ContactEnquiry(models.Model):
     STATUS_CHOICES = (
         ('New', 'New'),
         ('Contacted', 'Contacted'),
+        ('Follow Up', 'Follow Up'),
+        ('Interested', 'Interested'),
+        ('Site Visit', 'Site Visit'),
+        ('Negotiation', 'Negotiation'),
+        ('Sold', 'Sold'),
+        ('Not Interested', 'Not Interested'),
         ('Closed', 'Closed'),
     )
 
@@ -90,6 +96,7 @@ class ContactEnquiry(models.Model):
     property_category = models.CharField(max_length=100, blank=True, null=True)
     requirements = models.TextField(blank=True, null=True)
     source = models.CharField(max_length=100, default='Website', blank=True, null=True)
+    admin_notes = models.TextField(blank=True, null=True)
     last_updated = models.DateTimeField(auto_now=True)
 
     class Meta:

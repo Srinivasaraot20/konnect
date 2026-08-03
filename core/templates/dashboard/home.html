@@ -129,7 +129,7 @@
     new Chart(pieCtx, {
         type: 'doughnut',
         data: {
-            labels: ['New', 'Read', 'Closed'],
+            labels: ['New', 'Contacted', 'Closed'],
             datasets: [{
                 data: {{ status_data|safe }},
                 backgroundColor: ['#28a745', '#17a2b8', '#6c757d'],
