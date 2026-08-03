@@ -145,3 +145,6 @@ SESSION_COOKIE_HTTPONLY = True
 # CSRF_COOKIE_SECURE = True
 
 LOGIN_REDIRECT_URL = '/dashboard/'
+
+# Whitenoise Compression & Caching
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
