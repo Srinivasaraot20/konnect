@@ -95,6 +95,8 @@ def custom_admin_required(view_func):
     def _wrapped_view(request, *args, **kwargs):
         if not request.user.is_authenticated:
             return redirect('core:login')
+        if request.user.is_superuser:
+            return view_func(request, *args, **kwargs)
         try:
             # Allow anyone with a profile role to access the dashboard base
             if request.user.profile.role in ['Admin', 'Manager', 'Agent']:
