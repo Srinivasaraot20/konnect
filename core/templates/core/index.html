@@ -187,7 +187,7 @@
           <a href="{% url 'admin:index' %}" class="btn-outline-white text-decoration-none py-2 px-3" style="font-size: 0.8rem; min-height: auto;">Dashboard</a>
           <a href="{% url 'core:logout' %}" class="btn-gold text-decoration-none text-dark py-2 px-3" style="font-size: 0.8rem; min-height: auto;">Logout</a>
         {% else %}
-          <a href="https://konnect-iota.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-outline-white text-decoration-none">Login</a>
+          <a href="{% url 'core:login' %}" class="btn-outline-white text-decoration-none">Login</a>
         {% endif %}
       </div>
 
@@ -217,7 +217,7 @@
       <a href="{% url 'admin:index' %}" class="btn-outline-white mt-2 text-decoration-none">Dashboard</a>
       <a href="{% url 'core:logout' %}" class="btn-gold mt-2 text-decoration-none text-dark">Logout</a>
     {% else %}
-      <a href="https://konnect-iota.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-outline-white mt-3 text-decoration-none">Login</a>
+      <a href="{% url 'core:login' %}" class="btn-outline-white mt-3 text-decoration-none">Login</a>
     {% endif %}
     <div class="d-flex align-items-center gap-3 mt-4">
       <a href="https://wa.me/919059598777" target="_blank" class="text-white text-decoration-none" aria-label="Chat with us on WhatsApp"><i class="fab fa-whatsapp fa-lg" aria-hidden="true"></i></a>
